@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<!-- Standard Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+	<script src="https://api.skyciv.com/dist/v3/javascript/skyciv.js"></script>
+	<script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
+	<link rel="stylesheet" href="https://semantic-ui.com/dist/semantic.css" />
+
+	<style>
+		@media only screen and (max-width: 600px) {
+			body {
+				background-color: #e9f2f5;
+			}
+		}
+
+		.ui.menu {
+			margin: 0px;
+		}
+
+		#renderer-container {
+			position: relative !important;
+			height: calc(100vh - 42px);
+		}
+
+
+	</style>
+
+		<script>
+			var viewer;
+			var auth_obj = {
+				"username": "sam@skyciv.com",
+				"key": "sZFl0x6w7iq53bub7sFzhpZuDVMiPJEyVNNaXN6Kb5DfuJl5RIuUTnzK6HwKx4k6"
+			}
+			var current_path = "";
+			var current_files = [];
+			var is_getting_file_list = false;
+			getFilesFromPath(""); //get root files
+
+			function updateList(current_files) {
+				// Clear the list 
+				$('#inside-nice-list').html("");
+
+				if (current_path == "") {
+					$('#inside-nice-list').append('<a class="item"><div class="content"><div class="header">S3D Root</div></div></a>');
+				} else {
+					$('#inside-nice-list').append('<a class="item"><div class="content"><div class="header">' + current_path + '</div></div></a>');
+				}
+
+				// Fill in the forward links. 
+				$('#inside-nice-list').append('<a class="item file-item" data-path="back-button"><div class="content"><div class="header">Back</div></div></a>');
+
+				for (var i = 0; i < current_files.length; i++) {
+					var this_file = current_files[i];
+					var html = "";
+					if (this_file.class == "folder") {
+
+						html += '<a class="item file-item" data-file-type="' + this_file.class + '"';
+						html += ' data-path="/' + this_file.file_name + '"';
+						html += '><i class="folder icon"></i><div class="content"><div class="header">' + this_file.file_name + '</div></div></a>';
+
+						$('#inside-nice-list').append(html);
+					} else {
+						html += '<a class="item file-item" data-file-type="' + this_file.class + '"';
+						html += ' data-path="/' + this_file.file_name + '" ';
+						html += ' data-file-name="' + this_file.file_name + '"';
+
+						html += '><i class="file icon"></i><div class="header">' + this_file.file_name + '</div></a>';
+
+						$('#inside-nice-list').append(html);
+					}
+				}
+
+				$('#inside-nice-list').sidebar('show');
+
+
+				/*$(".file-item").mouseover(function () {
+					var hover = {
+						color: " #289dcc",
+						background: "white",
+						cursor: "pointer"
+					};
+					$(this).css(hover);
+
+				});
+
+				$(".file-item").mouseout(function () {
+					var out = {
+						color: "black",
+						background: "white"
+					}
+					$(this).css(out);
+				})*/
+
+				// Process forward clicks.  
+				$(".file-item").click(function () {
+					var this_type = $(this).attr("data-file-type");
+					var this_path = $(this).attr("data-path");
+					var this_filename = $(this).attr("data-file-name");
+
+					if (this_path == "back-button") {
+						if (current_path == "") {
+							return;
+						} else {
+							regex = /(\W)([^/]*)/g;
+							back_parts = current_path.match(regex);
+							var back_path = "";
+							for (var i = 0; i < back_parts.length - 1; i++) {
+								back_path += back_parts[i];
+							}
+
+							current_path = back_path;
+							getFilesFromPath(current_path);
+							displayMenuOfFiles(current_files);
+						}
+					} else {
+						if (this_type == "folder") {
+							getFilesFromPath(current_path + this_path);
+							current_path = current_path + this_path;
+							displayMenuOfFiles(current_files);
+						} else {
+							loadFileFromPath(current_path + "/", this_filename)
+						}
+					}
+
+
+
+					console.log(this_path);
+				})
+			}
+
+			function getFilesFromPath(path) {
+
+				if (is_getting_file_list) return;
+
+				if (!path) path = current_path;
+
+				var api_obj = {
+					auth: auth_obj,
+					functions: [
+						{
+							'function': "S3D.file.getFileDirectory",
+							'arguments': {
+								'path': path,
+								//'keep_open': true
+							}
+						}
+					]
+				}
+				
+				is_getting_file_list = true;
+
+				skyciv.request(api_obj,
+					function (server_response) {
+						if (server_response.response.status == 0) {
+							//if (server_response.response.hasOwnProperty("session_id")) auth_obj.session_id = server_response.response.session_id;
+							current_files = server_response.response.data;
+
+							current_files.sort(function (a, b) {
+								return a.class - b.class;
+							});
+
+							current_path = path;
+							displayMenuOfFiles(current_files);
+						}
+
+						jQuery("#model-loader-spinner").hide();
+						is_getting_file_list = false;
+					}
+				);
+
+
+			}
+
+			function displayMenuOfFiles(files) {
+
+				if (!files) files = current_files;
+				updateList(current_files);
+				console.log("Draw files", files);
+
+			}
+
+			function calculateModelStats(s3d_model) {
+
+					var node_count = Object.keys(s3d_model.nodes).length;
+					var member_count = Object.keys(s3d_model.members).length;
+					var member_length_system = s3d_model.settings.units.length;
+
+					var html= "";
+					html += "Node Count: " + node_count + "<br>";
+					html+= "Member Count: " + member_count + "<br>";
+					html += "Member Units: " + member_length_system;
+
+					return html;
+			}
+
+			function loadFileFromPath(path, filename) {
+
+				jQuery("#model-loader-spinner").show();
+				jQuery("#model-loader-spinner div").html("Loading Model...");
+
+				var api_obj = {
+					auth: auth_obj,
+					functions: [
+						{
+							'function': "S3D.file.open",
+							'arguments': {
+								'path': path,
+								'name': filename,
+								//'keep_open': true,
+							}
+						},
+						{
+							'function': "S3D.model.get"
+						},
+					]
+				}
+
+				skyciv.request(api_obj, function (res) {
+					if (res.response.status == 0) {
+						var model_data = res.response.data;
+						viewer.model.set(model_data);
+						viewer.model.buildStructure();
+						viewer.render();
+
+						var model_stats = calculateModelStats(model_data);
+						jQuery("#file-name-top").html(filename);
+						jQuery("#file-name-top").attr("data-html", model_stats);
+
+						jQuery("#model-loader-spinner").hide();
+					}
+
+				});
+
+			}
+
+			jQuery(document).ready(function () {
+
+				viewer = SKYCIV.renderer({
+					container_selector: '#renderer-container',
+					//background: '#DDD'
+				});
+
+				jQuery("#browse-files").click(function () {
+					displayMenuOfFiles();
+				});
+
+				jQuery("#file-name-top").popup();
+
+				jQuery("#more-options-dropdown").dropdown();
+
+			})
+
+
+		</script>
+
+
+</head>
+
+<body>
+
+
+	<!-- BLADE PHP STARTS HERE-->
+
+	<div class="ui sidebar inverted vertical menu" id="inside-nice-list">
+		<a class="item">SkyCiv File Manager</a>
+	</div>
+	<div class="pusher">
+		<div class="ui menu">
+			<a class="item" id="browse-files">Browse</a>
+			<!-- <a class="item">Share</a> -->
+			<div class="ui dropdown item" id="more-options-dropdown">
+				More
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item"><i class="share icon"></i> Share</a>
+					<a class="item"><i class="file pdf outline icon"></i> View Reports</a>
+					<a class="item"><i class="chart pie icon"></i> Bill of Materials</a>
+				</div>
+			</div>
+			<div class="right menu">
+				<a class="item" id="file-name-top" data-html="" data-variation="inverted" data-position="bottom right"></a>
+			</div>
+		</div>
+		<div class="ui active inverted dimmer" id="model-loader-spinner">
+			<div class="ui text loader">Loading Files...</div>
+		</div>
+		<div id="renderer-container"></div>
+	</div>
+
+	
+	<!-- BLADE PHP ENDS HERE-->
+
+
+</body>
+
+</html>

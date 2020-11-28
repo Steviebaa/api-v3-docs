@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<head>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+	<script src="https://api.skyciv.com/dist/v3/javascript/skyciv.js"></script>
+	<link rel="stylesheet" href="https://semantic-ui.com/dist/semantic.css" />
+	<!-- Include renderer and parametric script when live  -->
+	<script src="https://api.skyciv.com/dist/v3/javascript/skyciv-parametric-dist.js"></script>
+	<script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
+
+	<style>
+		#section-name {
+			display: initial;
+		}
+	</style>
+
+
+	<script>
+
+
+
+	</script>
+</head>
+
+<body style="padding:20px;">
+	<h2>Basic Assembly Viewer</h2>
+
+	<!-- <div id="renderer-container" style="position:relative;"></div> -->
+
+	<div class="ui stackable three column grid" style="height: 100vh !important;">
+		<div class="four wide column set-containers" id="left-set-div">
+
+
+			<div class="five ui buttons" id="design-code">
+				<button class="ui button" id="gable_roof">Assembly 1</button>
+				<button class="ui button" id="rect_truss">Assembly 2</button>
+				<button class="ui button" id="multi_level_building">Assembly 3</button>
+			</div>
+
+
+			<h3>Some Assembly Parameters</h3>
+			<label>Length: </label>
+			<div id="building_length" onchange='changeBuildingLengthorWidth("length")' class="ui input">
+				<input type="number" placeholder="Building Length" value="20">
+			</div>
+			</br></br>
+
+			<label>Width: </label>
+			<div id="building_width" onchange='changeBuildingLengthorWidth("width")' class="ui input">
+				<input type="number" placeholder="Building Width" value="10">
+			</div>
+
+
+
+
+
+		</div>
+
+		<div class="twelve wide column" id="renderer-set-div" style="padding-left: 0px !important;
+		padding-right: 0px !important;">
+			<div id="renderer-container" style="height:93vh"></div>
+		</div>
+
+		<div>
+
+			<script>
+
+				var gable_roof = {
+					"id": 1,
+					"title": "Intermediate Gable Roof",
+					"variables": {
+						"eave_to_ridge_height": { "value": 3, "type": "float", "units": "length" },
+						"building_width": { "value": 10, "type": "float", "units": "length" },
+						"building_length": { "value": 20, "type": "float", "units": "length" },
+						"column_height": { "value": 5, "type": "float", "units": "length" },
+						"number_of_trusses": { "value": 3, "type": "integer" },
+						"number_of_panels": { "value": 4, "type": "integer" },
+						"truss_style": { "value": "cross", "type": "truss_style" }
+					},
+					"steps": [
+						{
+							"cad_type": "cad_truss",
+							"type": "2D",
+							"ref_pt": [0, 0, 0],
+							"height": ["y", "~~eave_to_ridge_height~~"],
+							"length": ["z", "~~building_width~~"],
+							"segments": "~~number_of_panels~~",
+							"offset": "~~building_width / 2~~",
+							"web_section_id": 1,
+							"chord_section_id": 2,
+							"style": "~~truss_style~~"
+						},
+						{
+							"cad_type": "cad_line",
+							"type": "vector",
+							"vector": [0, -1, 0],
+							"length": "~~column_height~~",
+							"ref_pt": [0, 0, 0],
+							"segments": 1
+						},
+						{
+							"cad_type": "cad_repeat",
+							"ref_ids": ["2"],
+							"type": "vector",
+							"vector": [1, 0, 0],
+							"repetitions": "~~number_of_trusses - 1~~",
+							"length": "~~building_length~~"
+						},
+						{
+							"cad_type": "cad_repeat",
+							"ref_ids": ["2", "3"],
+							"type": "vector",
+							"vector": [0, 0, 1],
+							"repetitions": 1,
+							"length": "~~building_width~~"
+						},
+						{
+							"cad_type": "cad_repeat",
+							"ref_ids": ["1"],
+							"type": "vector",
+							"vector": [1, 0, 0],
+							"repetitions": "~~number_of_trusses - 1~~",
+							"length": "~~building_length~~"
+						},
+						{
+							"cad_type": "cad_join",
+							"set_1": { "cad_id": ["1"] },
+							"set_2": { "cad_id": ["~~'5_'+(parseFloat(number_of_trusses - 1))~~"] },
+							"segments": 1,
+							"reverse": true,
+							"style": "straight",
+							"section_id": 1
+						}
+					]
+				};
+
+				var rect_truss = {
+					"id": 1,
+					"title": "Rectangular Truss (Screen) Walls",
+					"variables": {
+						"truss_height": { "value": 10, "type": "float", "units": "length" },
+						"truss_length": { "value": 30, "type": "float", "units": "length" },
+						"truss_width": { "value": 30, "type": "float", "units": "length" },
+						"side_truss_style": { "value": "straight", "type": "truss_style" },
+						"side_number_of_panels": { "value": 3, "type": "integer" },
+						"front_truss_style": { "value": "straight", "type": "truss_style" },
+						"front_number_of_panels": { "value": 3, "type": "integer" }
+					},
+					"steps": [
+						{
+							"cad_type": "cad_truss",
+							"type": "2D",
+							"ref_pt": [0, 0, 0],
+							"height": ["y", "~~truss_height~~"],
+							"length": ["x", "~~truss_length~~"],
+							"segments": "~~side_number_of_panels~~",
+							"style": "~~side_truss_style~~",
+							"offset": 0,
+							"web_section_id": 1,
+							"chord_section_id": 2
+						},
+						{
+							"cad_type": "cad_repeat",
+							"type": "vector",
+							"vector": [0, 0, 1],
+							"repetitions": 1,
+							"length": "~~truss_width~~",
+							"ref_ids": ["1"]
+						},
+						{
+							"cad_type": "cad_truss",
+							"type": "2D",
+							"ref_pt": [0, 0, 0],
+							"height": ["y", "~~truss_height~~"],
+							"length": ["z", "~~truss_width~~"],
+							"segments": "~~front_number_of_panels~~",
+							"style": "~~front_truss_style~~",
+							"offset": 0,
+							"web_section_id": 1,
+							"chord_section_id": 2
+						},
+						{
+							"cad_type": "cad_repeat",
+							"type": "vector",
+							"vector": [1, 0, 0],
+							"repetitions": 1,
+							"length": "~~truss_length~~",
+							"ref_ids": ["3"]
+						}
+					]
+				}
+
+				var multi_level_building = {
+					"id": 1,
+					"title": "Multi-level Rectangular Structure",
+					"variables": {
+						"structure_depth": { "value": 10, "type": "float", "units": "length" },
+						"structure_width": { "value": 10, "type": "float", "units": "length" },
+						"structure_height": { "value": 10, "type": "float", "units": "length" },
+						"number_of_levels": { "value": 10, "type": "float", "units": "length" },
+						"column_height": { "value": 5, "type": "float", "units": "length" },
+						"number_of_bays_over_depth": { "value": 3, "type": "integer" },
+						"number_of_bays_over_width": { "value": 3, "type": "integer" }
+					},
+					"steps": [
+						{
+
+							"ref_pt": [0, 0, 0],
+							"vector": [1, 0, 0],
+							"length": "~~structure_width~~",
+							"type": "vector",
+							"cad_type": "cad_line",
+							"segments": 1
+						},
+						{
+
+							"ref_pt": [0, 0, 0],
+							"vector": [0, 0, 1],
+							"length": "~~structure_depth~~",
+							"type": "vector",
+							"cad_type": "cad_line",
+							"segments": 1
+						},
+						{
+
+							"cad_type": "cad_repeat",
+							"type": "vector",
+							"repetitions": "~~number_of_bays_over_width~~",
+							"vector": [1, 0, 0],
+							"length": "~~structure_width~~",
+							"ref_ids": ["2"]
+						},
+						{
+
+							"cad_type": "cad_repeat",
+							"type": "vector",
+							"repetitions": "~~number_of_bays_over_depth~~",
+							"vector": [0, 0, 1],
+							"length": "~~structure_depth~~",
+							"ref_ids": ["1"]
+						},
+						{
+
+							"ref_pt": [0, 0, 0],
+							"vector": [0, -1, 0],
+							"length": "~~structure_height~~",
+							"type": "vector",
+							"cad_type": "cad_line",
+							"segments": 1
+						},
+						{
+							"cad_type": "cad_repeat",
+							"repetitions": "~~number_of_bays_over_depth~~",
+							"type": "vector",
+							"vector": [0, 0, 1],
+							"length": "~~structure_depth~~",
+							"ref_ids": ["5"]
+						},
+						{
+							"cad_type": "cad_repeat",
+							"repetitions": "~~number_of_bays_over_width~~",
+							"type": "vector",
+							"vector": [1, 0, 0],
+							"length": "~~structure_width~~",
+							"ref_ids": ["5", "6"]
+						},
+						{
+							"cad_type": "cad_repeat",
+							"type": "vector",
+							"repetitions": "~~number_of_levels - 1~~",
+							"vector": [0, -1, 0],
+							"length": "~~structure_height~~",
+							"ref_ids": ["1", "2", "3", "4"]
+						},
+						{
+
+							"cad_type": "cad_line",
+							"type": "vector",
+							"segments": 1,
+							"length": "~~column_height~~",
+							"ref_pt": [0, "~~0 - structure_height~~", 0],
+							"vector": [0, -1, 0]
+
+						},
+
+						{
+							"cad_type": "cad_repeat",
+							"type": "vector",
+							"repetitions": "~~number_of_bays_over_depth~~",
+							"vector": [0, 0, 1],
+							"length": "~~structure_depth~~",
+							"ref_ids": ["9"]
+						},
+
+						{
+							"cad_type": "cad_repeat",
+							"type": "vector",
+							"repetitions": "~~number_of_bays_over_width~~",
+							"vector": [1, 0, 0],
+							"length": "~~structure_width~~",
+							"ref_ids": ["9", "10"]
+						}
+					]
+				}
+
+				var context = "";
+
+				function setContext(cur_context) {
+					context = cur_context;
+				};
+
+				function getContext() {
+					return context;
+				};
+
+				var viewer = SKYCIV.renderer({
+					container_selector: '#renderer-container',
+					//background: '#DDD'
+				});
+
+				var s3d_model = SKYCIV.structure.parametric.init({
+					assembly_obj: gable_roof
+				});
+				viewer.model.set(s3d_model);
+				viewer.model.buildStructure();
+				viewer.render();
+				viewer.resize();
+
+				setContext("gable_roof");
+
+
+				jQuery("#gable_roof").click(function () {
+
+					var s3d_model = SKYCIV.structure.parametric.init({
+						assembly_obj: gable_roof
+					});
+					viewer.model.set(s3d_model);
+					viewer.model.buildStructure();
+					viewer.render();
+					viewer.resize();
+
+					setContext("gable_roof");
+				});
+
+				jQuery("#rect_truss").click(function () {
+
+					var s3d_model = SKYCIV.structure.parametric.init({
+						assembly_obj: rect_truss
+					});
+					viewer.model.set(s3d_model);
+					viewer.model.buildStructure();
+					viewer.render();
+					viewer.resize();
+
+					setContext("rect_truss");
+
+
+				});
+
+				jQuery("#multi_level_building").click(function () {
+
+					var s3d_model = SKYCIV.structure.parametric.init({
+						assembly_obj: multi_level_building
+					});
+					
+					viewer.model.set(s3d_model);
+					viewer.model.buildStructure();
+					viewer.render();
+					viewer.resize();
+					setContext("multi_level_building");
+
+				});
+
+
+				function changeBuildingLengthorWidth(key) {
+
+					switch (getContext()) {
+						case "gable_roof":
+							var length = "building_length";
+							var width = "building_width";
+							break;
+						case "rect_truss":
+							var length = "truss_length";
+							var width = "truss_width";
+							break;
+						case "multi_level_building":
+							var length = "structure_depth";
+							var width = "structure_width";
+							break;
+					};
+
+					var cur_obj = eval(getContext());
+
+					cur_obj.variables[eval(key)].value = jQuery("#building_" + key + " input").val()
+
+					viewer.model.set(SKYCIV.structure.parametric.init({
+						assembly_obj: cur_obj
+					}));
+
+					viewer.model.buildStructure();
+					viewer.render();
+
+					viewer.resize();
+
+
+				}
+
+			</script>
+
+
+
+</body>
+
+</html>

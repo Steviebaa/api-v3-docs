@@ -8,7 +8,7 @@ The SkyCiv assembly library provides a series of functions that can be used to q
 ### Getting Started
 Include the <a href="https://api.skyciv.com/dist/v3/javascript/skyciv-parametric-dist.js">skyciv-parametric-dist.js</a> file on your page to get access to the parametric library. Download the sample file below and open it in a web browser to build a Gable Roof warehouse model using only the assembly library. 
 
-<a href="/api/v3/html/assembly.html">Sample Assemblies Functionality</a>....<a href="/api/v3/html/assembly.html">Sample Assemblies Functionality</a>.
+<a href="/api/v3/html/assembly.html">Sample Assemblies Functionality</a>.
 
 ## `SKYCIV.structure.parametric.init`
 Pass in an assembly object or a model object and an assembly object into this function to build the overall assembly. This function will return a model object back

@@ -11,7 +11,7 @@ SkyCiv 3D renderer is available to bring your models to 3D life. Use the SkyCiv 
 
 This client side renderer can be included in your applications so you can have a full rendering of your model in real-time. The viewer is fully functional on mobile and tablet devices.
 
-<!--<img src="/api/v3/img/images/3d-renderer-viewer.png" style="width:80%;">--/>
+<!--<img src="/api/v3/img/images/3d-renderer-viewer.png" style={{width: '80%'}}>--/>
 
 Some of the functionality of this library includes:
 

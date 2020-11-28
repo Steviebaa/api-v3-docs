@@ -7,9 +7,9 @@ sidebar_label: Creating the API Object
 ## API Object
 
 In this example we are creating the entire payload object by supplying the following components:
-* The [`auth`](getting-started-authentication) object
-* The [`options`](getting-started-options) object
-* The [`functions`](getting-started-the-request-object.md#functions) array - an array of objects defining which functions to run `[ {...}, {...}, ... ]`
+* The [`auth`](the-request-object#auth) object
+* The [`options`](the-request-object#options) object
+* The [`functions`](the-request-object#functions) array - an array of objects defining which functions to run `[ {...}, {...}, ... ]`
     1. Starting a session - using function S3D.session.start
     2. Setting the model  - using function [S3D.model.set](docs-S3D.model.md#s3dmodelset) 
     3. Running an analysis - using function [S3D.model.solve](docs-S3D.model.md#s3dmodelsolve) 

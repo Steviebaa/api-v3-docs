@@ -1,0 +1,204 @@
+
+/* BOTTOM NAV BAR */
+
+#sm-view-selector-menu {
+	position: absolute;
+    bottom: 0px;
+	width: 100%;
+	height: 70px;
+}
+
+#sm-view-selector-menu .item {
+	width: 25%;
+}
+
+
+.sm-view {
+	display:none;
+	overflow-y: auto;
+	height: calc(100vh - 70px);
+	overflow-x: hidden;
+}
+
+.internal-sm-view {
+	padding: 20px;
+}
+
+#sm-view-selector-menu .item.active {
+	color: #289dcc;
+}
+
+
+
+/* HOME */
+#sm-view-home {
+	display: block;
+}
+
+#home-header {
+	position: absolute;
+	z-index: 9999;
+	width: 100%;
+}
+
+.overlay-colour-img {
+	border-style: none;
+    height: 22vh;
+    width: 100%;
+	object-fit: fill;
+	opacity: 0.2;
+}
+
+img.full-screen {
+	width: auto;
+    height: 120vh;
+    margin-top: -200px;
+    margin-left: -500px;
+	object-position: center;
+	opacity: 0.9;
+	position: absolute;
+	filter: blur(8px);
+	-webkit-filter: blur(12px);
+	z-index: -1;
+ }
+
+.overlay-colour {
+    background: black;
+    overflow: hidden;
+    background: #C33764;  /* fallback colour. Make sure this is just one solid colour. */
+    background: -webkit-linear-gradient(rgba(29, 38, 113, 0.8),  #289dcc), url("https://bit.ly/2rlzaXi");
+    background: linear-gradient(rgba(29, 38, 113, 0.8), #289dcc), url("https://bit.ly/2rlzaXi"); /* The least supported option. */
+
+}
+
+#home-header .skyciv-logo {
+	width: 130px;
+	right: 15px;
+	top: 15px;
+    position: absolute;
+}
+
+#home-header section {
+	position: absolute;
+    top: 10vh;
+    left: 8%;
+    color: white;
+    z-index: 999;
+}
+
+#home-header section h1, #home-header section h4{
+	margin-top: 0px;
+    font-weight: 100;
+}
+
+#sm-view-home .internal-sm-view {
+	margin-top: 22vh;
+}
+
+.ui.cards.vertical-scroll {
+	display: -webkit-box;
+	overflow-x:auto;
+}
+
+#latest-files-list .card .content {
+	padding: 10px;
+}
+
+#latest-files-list .card .header {
+		text-overflow: ellipsis;
+	display: block;
+    overflow: hidden;
+    height: 20px;
+}
+
+
+#latest-files-list .card img {
+	height: 150px;
+}
+
+
+
+/* TOOL LIST */
+
+.overlayed-list .item {
+	width: 100%;
+	height: 100px;
+	background: #289dcc;
+	display: inline-flex;
+	opacity: 0.8;
+	color: white;
+	margin-bottom: 20px;
+}
+
+.overlayed-list .item img {
+	width: 100px;
+}
+
+.overlayed-list .item .description {
+	margin-left: 15px;
+	margin-top: 10px;
+	width: calc(100% - 100px - 15px);
+}
+
+.overlayed-list .item .description h3 {
+	margin-bottom: 5px;
+}
+
+.overlayed-list .item .description p {
+	color: #f2f2f2;
+}
+
+
+/* FILEMAN */
+
+#file-search .results {
+  display: none !important;
+}
+
+#file-search {
+	text-align: center;
+	width: 90%;
+}
+
+#file-search .input {
+	width: 90%;
+}
+
+#fileman-file-list {
+	background: white;
+	padding: 6px;
+}
+
+#fileman-file-list .item {
+	border-bottom: 0.5px solid #888;
+
+}
+
+#fileman-file-list .item .header {
+	text-overflow: ellipsis;
+	display: block;
+    overflow: hidden;
+    height: 20px;
+}
+
+#fileman-file-list .item .content {
+	padding-top: 20px;
+}
+
+/* ACCOUNT */
+
+
+
+.ui.cards > .card > .content > .header:not(.ui), .ui.card > .content > .header:not(.ui) {
+	font-size: 1.08em;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+	body {
+
+	}
+}

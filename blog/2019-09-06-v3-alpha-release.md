@@ -40,6 +40,6 @@ We'd love to build a community of like-minded engineers, who want to build solut
 
 ### Documentation
 
-Have a browse through our <a href="getting-started/">Documentation</a>. We've added some examples and sample code to help you get started. As long as you have a SkyCiv Account, you can start using the API right away.
+Have a browse through our [Documentation](../docs/getting-started-introduction.md). We've added some examples and sample code to help you get started. As long as you have a SkyCiv Account, you can start using the API right away.
 
 

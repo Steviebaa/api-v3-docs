@@ -34,7 +34,7 @@ Different functions use a different number of API credits, based on their functi
 ----
 ## Pricing
 
-Each account level comes with a set number of API credits which can be viewed on the [pricing page](https://skyciv.com/checkout/). If you feel the pricing structure doesn't align with your needs, feel free to <a href="/about/contact/">contact us</a>.
+Each account level comes with a set number of API credits which can be viewed on the [pricing page](https://skyciv.com/checkout/). If you feel the pricing structure doesn't align with your needs, feel free to <a href="mailto:support@skyciv.com">email us</a>.
 
 <br/>
 
@@ -55,5 +55,5 @@ With every API call, users will also receive a summary of their usage. for that 
 Users can review their API usage at any time from [account activity page](https://platform.skyciv.com/account/api). This will include a view of your usage limit, and a log of all your API calls:
 
 <br/>
-<img src="/api/v3/img/images/api-usage-skyciv-platform.png" style="width: 70%"/>
+<img src="/api/v3/img/images/api-usage-skyciv-platform.png" style={{width: '70%'}}/>
 

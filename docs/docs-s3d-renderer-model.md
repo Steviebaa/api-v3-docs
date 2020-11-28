@@ -3,24 +3,14 @@ id: s3d-renderer-model
 title: SKYCIV.renderer Model
 ---
 
+<!-- <script>function bringToRenderer() {location.hash = "#renderer-container"}</script> -->
 
-<script src=""></script>
-<script>
-function bringToRenderer() {
-	location.hash = "#renderer-container"
-}
-</script>
 
 SkyCiv 3D renderer is available to bring your models to 3D life. Use the SkyCiv Renderer to build your model and visualise the model to ensure the structure is built correctly, confirm member orientation and include in your reporting.
 
 This client side renderer can be included in your applications so you can have a full rendering of your model in real-time.
 
-
-
 <div id="renderer-container"></div>
-
-
-
 
 # Model Class
 

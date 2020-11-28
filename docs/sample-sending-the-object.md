@@ -9,13 +9,13 @@ sidebar_label: Sending the Object
 Once we have [assigned the API object to a variable](sample-creating-the-api-object.md#api-object) describing our model, we send it to SkyCiv for analysis via the API. This is achieved by the use of a POST request. If you'd like to learn more about HTTP methods, [w3schools.com provides a great definition](https://www.w3schools.com/tags/ref_httpmethods.asp).
 
 There are various ways to contact the API:
-* Using the [packages](getting-started-packages) developed by the SkyCiv team ***(highly recommended)***.
+* Using the [packages](packages) developed by the SkyCiv team ***(highly recommended)***.
 * Download the SkyCiv API file and include it in you project.
 * Constructing the call manually.
 
 ### Packages by the SkyCiv Team
 
-You can view and learn about the available packages in the [Packages](getting-started-packages) section. We highly recommend this approach as we will continue to improve these packages to provide useful tools. This method is common industry practice as it helps keep your code clean and easy to read.
+You can view and learn about the available packages in the [Packages](packages) section. We highly recommend this approach as we will continue to improve these packages to provide useful tools. This method is common industry practice as it helps keep your code clean and easy to read.
 
 Although it may initially take longer to get setup, once you have an understanding of how package managers work (which we have provided) it will make future projects very quick and robust.
 
@@ -143,7 +143,7 @@ using the skyciv NPM package to achieve the following in a couple of lines of co
 <head></head>
 
 <body>
-	<textarea id="response" style="width:90%;" rows="30" wrap="off">Processing request...</textarea>
+	<textarea id="response" style={{width: "90%"}} rows="30" wrap="off">Processing request...</textarea>
 </body>
 
 <script>

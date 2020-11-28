@@ -45,7 +45,7 @@ The response will confirm whether or not the model was successfully saved to the
 
 Visit the URL to view, analyse and modify the model in Structural 3D.
 
-<img style="max-width: 900px;" src="/api/v3/img/images/api-generated-model-skyciv.png"/>
+<img style={{maxWidth: "900px"}} src="/api/v3/img/images/api-generated-model-skyciv.png"/>
 
 <br/>
 

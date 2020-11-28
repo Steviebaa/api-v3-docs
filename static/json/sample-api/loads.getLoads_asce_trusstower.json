@@ -1,0 +1,52 @@
+[
+	{
+		"function": "loads.getLoads",
+		"arguments": {
+			"site_data": {
+				"design_code": "asce7-16",
+				"project_address": "Wacker Avenue, Chicago",
+				"risk_category": "III",
+				"site_image": true,
+				"topography": {
+					"wind_direction": "N",
+					"exposure": "B",
+					"topo_image": true,
+					"country": "United States"
+				}
+			},
+			"building_data": {
+				"design_code": "asce7-16",
+				"structure": "trusstower",
+				"trusstower_dimensions": {
+					"ground_to_top": "80",
+					"ground_to_centroid": "33",
+					"ratio_of_solid_area_to_gross": "0.23",
+					"tower_cross_section": "square",
+					"member_section": "round",
+					"tower_length": "20",
+					"truss_type": "cross",
+					"base_column_height": "10",
+					"top_base_ratio": "0.6"
+				},
+				"wind_parameters": {
+					"structure_type": "trusstower-asce7-16",
+					"structure_level": [
+						{
+							"node_level": "2",
+							"node_elevation": 10
+						},
+						{
+							"node_level": "3",
+							"node_elevation": 20
+						},
+						{
+							"node_level": "roof",
+							"node_elevation": 30
+						}
+					]
+				},
+				"snow_parameters": false
+			}
+		}
+	}
+]
