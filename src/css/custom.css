@@ -1,0 +1,101 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+	--ifm-color-primary: #289dcc;
+	--ifm-color-primary-dark: #248db8;
+	--ifm-color-primary-darker: #2285ad;
+	--ifm-color-primary-darkest: #1c6e8f;
+	--ifm-color-primary-light: #35a9d7;
+	--ifm-color-primary-lighter: #3fadd9;
+	--ifm-color-primary-lightest: #5ebadf;
+	--ifm-code-font-size: 95%;
+}
+
+.docusaurus-highlight-code-line {
+	background-color: rgb(72, 77, 91);
+	display: block;
+	margin: 0 calc(-1 * var(--ifm-pre-padding));
+	padding: 0 var(--ifm-pre-padding);
+}
+
+#renderer-container {
+	height: 500px;
+}
+
+.skyciv-renderer {
+	position: relative;
+}
+
+/* OVERWRITE CONTAINER */
+.container {
+	/* margin: 0px; */
+	max-width: 90%;
+}
+
+/* BANNER TIP AND INFO */
+.banner {
+	padding: 10px;
+	padding-left: 20px;
+	border-radius: 5px;
+	border-left: 5px solid;
+  margin: 20px 0px;
+  color: black;
+}
+.banner:before {
+	padding-right: 10px;
+}
+
+.tip {
+	background-color: rgb(254, 241, 196);
+	border-color: rgb(241, 191, 63);
+}
+.tip:before {
+	content: '💡';
+}
+
+.info {
+	background-color: rgb(214, 241, 255);
+	border-color: rgb(63, 143, 241);
+}
+.info:before {
+	content: 'ℹ️';
+}
+
+/* SAMPLE CODE BUTTON */
+.sample-code-btn {
+	background: #8bc34a;
+	border: none;
+	color: white !important;
+	padding: 7px 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 15px;
+	border-radius: 100px;
+	min-width: 190px;
+	cursor: pointer;
+	float: right;
+	margin-top: 1px;
+}
+
+.sample-code-btn:hover {
+	background-color: #77b136;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+	margin-top: 0px;
+}
+
+.sample-code-btn:active {
+	background-color: #8bc34a;
+	box-shadow: none;
+	margin-top: 1px;
+}
+
+.sample-code-btn:after {
+	content: '→';
+	padding-left: 10px;
+}
