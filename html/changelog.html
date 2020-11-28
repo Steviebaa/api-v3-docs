@@ -1,0 +1,35 @@
+<div class="ui styled accordion">
+	<div class="title"><i class="dropdown icon"></i>SkyCiv API</div>
+	<div class="content">
+
+		<span>v3.0.1 - 22 November 2020</span>
+		<ul class="ui list">
+			<li><span class='new-feature'>NEW: </span>Load custom sections direct from your saved sections using `load_custom` key</li>
+			<li>Added <a href="https://skyciv.com/api/v3/docs/the-request-object/#options">options</a> key to take in global API settings, including `validate_input` and `response_data_only`</li>
+			<li><span class='new-feature'>NEW: </span>Added new S3D.model.script function which allows you to run custom Javascript. Useful in calling split, intersect or adding new nodes/members etc... </li>
+			<li>Added more keys to S3D.model.solve to filter what results are returned. `filter` key now takes an array of strings: "envelope", "load_case", "load_group", "load_combo", "envelope_abs_max"</li>
+			<li>Member offsets can now be specified as either local or global using the s3d_model settings key: `member_offsets_axis` </li>
+		</ul>
+
+		<span>v3.0 - 20 October 2020</span>
+		<p>Release of new SkyCiv API v3, with a new file format and additional analysis, design, rendering and reporting functionality. Features include:</p>
+		<ul class="ui list">
+			<li>S3D.model.set - to build models</li>
+			<li>S3D.file.save - save models to cloud storage</li>
+			<li>S3D.model.solve - to perform FEM analysis</li>
+			<li>S3D.member_design.check - to perform member design checks from US, AU, EN, BS, CSA design codes </li>
+			<li>loads.getLoads - generate wind/snow loads, topography factors and more using a site location</li>
+			<li>See the <a href="https://skyciv.com/api/v3/docs/the-request-object/#functions">full list of API features here</a></li>
+		</ul>
+		<p>Other features</p>
+		<ul class="ui list">
+			<li>Load sections directly from library</li>
+			<li>Full 3D Renderer available to display your model (free to use)</li>
+			<li>Mesh plates</li>
+			<li>Get SkyCiv Section library list</li>
+			<li>Take screenshot of model</li>
+			
+		</ul>
+
+	</div>
+</div>

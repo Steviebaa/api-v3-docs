@@ -1,0 +1,8 @@
+[
+	{
+        "function": "S3D.file.getFileDirectory",
+        "arguments": {
+            "path": null
+		}
+	}
+]
