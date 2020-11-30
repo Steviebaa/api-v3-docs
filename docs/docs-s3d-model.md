@@ -900,13 +900,13 @@ There are a few simple and quick ways to test the file you have built:
 
 ## Other Sample files:
 
-Simple Beam (Imperial): <a href="/api/v3/json/sample-s3d-files/simple-beam-imperial.json">skyciv-sample-1</a>
+Simple Beam (Imperial): <a href="/api-v3-docs/json/sample-s3d-files/simple-beam-imperial.json">skyciv-sample-1</a>
 
-AISC 3D Frame (exported from S3D): <a href="/api/v3/json/sample-s3d-files/3d-frame-aisc.json">skyciv-sample-2</a>
+AISC 3D Frame (exported from S3D): <a href="/api-v3-docs/json/sample-s3d-files/3d-frame-aisc.json">skyciv-sample-2</a>
 
-2,000 Member Structure: <a href="/api/v3/json/sample-s3d-files/2000mem-structure.json">skyciv-sample-3</a>
+2,000 Member Structure: <a href="/api-v3-docs/json/sample-s3d-files/2000mem-structure.json">skyciv-sample-3</a>
 
-450 Member Structure with 32 Load Combos: <a href="/api/v3/json/sample-s3d-files/450mem-32LCs.json">skyciv-sample-4</a>
+450 Member Structure with 32 Load Combos: <a href="/api-v3-docs/json/sample-s3d-files/450mem-32LCs.json">skyciv-sample-4</a>
 
 <br/>
 <a href="https://platform.skyciv.com/api/v3#model-header" target="_blank" class="sample-code-btn">Try <code>s3d_model</code></a>

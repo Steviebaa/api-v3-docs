@@ -266,7 +266,7 @@ Once [`S3D.model.set`](#s3dmodelset) has been executed, you can take various scr
 
 The following is an example of the isometric screenshot from the above example:
 
-<img src="/api/v3/img/images/S3D-model-takeScreenshot.png"/>
+<img src="/api-v3-docs/img/images/S3D-model-takeScreenshot.png"/>
 
 <br/>
 

@@ -29,7 +29,7 @@ Save a model to the user's SkyCiv cloud storage.
   }
 }
 ```
-<a href="https://platform.skyciv.com/api/v3?preload_function=S3D.model.takeScreenshot" target="_blank" class="sample-code-btn">Try <code>S3D.file.save</code></a><br/>
+<!-- <a href="https://platform.skyciv.com/api/v3?preload_function=S3D.model.takeScreenshot" target="_blank" class="sample-code-btn">Try <code>S3D.file.save</code></a><br/> -->
 
 #### Sample response for the `S3D.file.save` function
 
@@ -45,7 +45,7 @@ The response will confirm whether or not the model was successfully saved to the
 
 Visit the URL to view, analyse and modify the model in Structural 3D.
 
-<img style={{maxWidth: "900px"}} src="/api/v3/img/images/api-generated-model-skyciv.png"/>
+<img style={{maxWidth: "900px"}} src="/api-v3-docs/img/images/api-generated-model-skyciv.png"/>
 
 <br/>
 
@@ -71,7 +71,8 @@ Load a model from the user's SkyCiv cloud storage.
   }
 }
 ```
-<a class="sample-code-btn" target="_blank" href="https://platform.skyciv.com/api?f=S3D.file.open">Try <code>S3D.file.open</code></a>
+<!-- <a class="sample-code-btn" target="_blank" href="https://platform.skyciv.com/api?f=S3D.file.open">Try <code>S3D.file.open</code></a> -->
+
 <br/>
 
 #### Sample response for the `S3D.file.open` function
@@ -134,9 +135,9 @@ The response will contain a confirmation message, a list of shared users and a p
 
 Returns a list of files and folders of in the user's cloud storage. Useful for locating files or building a tree of files.
 
-<div class="banner tip">
+<!-- <div class="banner tip">
 	Set the <code>keep_open</code> property to <code>true</code> in the <a href="S3D.session#s3dsessionstart"><code>S3D.session.start</code></a> function for faster file directory navigation.
-</div>
+</div> -->
 
 | Key            | Type     | Description                                                                                   |
 | :---           | :---:    | :---                                                                                          |
@@ -155,7 +156,8 @@ Returns a list of files and folders of in the user's cloud storage. Useful for l
 }
 ```
 
-<a href="https://platform.skyciv.com/api/v3?preload_function=S3D.file.getFileDirectory" target="_blank" class="sample-code-btn">Try <code>S3D.file.getFileDirectory</code></a>
+<!-- <a href="https://platform.skyciv.com/api/v3?preload_function=S3D.file.getFileDirectory" target="_blank" class="sample-code-btn">Try <code>S3D.file.getFileDirectory</code></a> -->
+
 <br/>
 
 #### Sample response for the `S3D.file.getFileDirectory` function
@@ -198,4 +200,3 @@ The below response shows the contents of the folder, which includes one folder c
   ]
 }
 ```
-<!--<a class="sample-code-btn" target="_blank" href="https://platform.skyciv.com/api?f=S3D.file.open">Try this Function</a>-->

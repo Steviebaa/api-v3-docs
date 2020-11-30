@@ -55,5 +55,5 @@ With every API call, users will also receive a summary of their usage. for that 
 Users can review their API usage at any time from [account activity page](https://platform.skyciv.com/account/api). This will include a view of your usage limit, and a log of all your API calls:
 
 <br/>
-<img src="/api/v3/img/images/api-usage-skyciv-platform.png" style={{width: '70%'}}/>
+<img src="/api-v3-docs/img/images/api-usage-skyciv-platform.png" style={{width: '70%'}}/>
 

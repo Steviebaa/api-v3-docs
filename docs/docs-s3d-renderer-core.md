@@ -5,13 +5,17 @@ title: SKYCIV.renderer Core
 
 <script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src ="/api/v3/js/renderer-sample.js"></script>
+<script src="/api-v3-docs/js/renderer-sample.js"></script>
+
+---
 
 SkyCiv 3D renderer is available to bring your models to 3D life. Use the SkyCiv Renderer to build your model and visualise the model to ensure the structure is built correctly, confirm member orientation and include in your reporting.
 
 This client side renderer can be included in your applications so you can have a full rendering of your model in real-time. The viewer is fully functional on mobile and tablet devices.
 
-<!--<img src="/api/v3/img/images/3d-renderer-viewer.png" style={{width: '80%'}}>--/>
+---
+
+<img src="/api-v3-docs/img/images/3d-renderer-viewer.png" style={{width: '80%'}}/>
 
 Some of the functionality of this library includes:
 
@@ -28,7 +32,6 @@ Simply include the [s3d-renderer.js file](https://api.skyciv.com/dist/v3/javascr
 ```js
 	var viewer = new SKYCIV.renderer({
 		container_selector: '#renderer-container',
-		//background: '#DDD'
 	});
 
 	viewer.model.set(s3d_model);
@@ -38,10 +41,10 @@ Simply include the [s3d-renderer.js file](https://api.skyciv.com/dist/v3/javascr
 
 This will initialise the viewer Object and display the following in your container:
 
-<div id="render-div"><div id="renderer-container"></div><div>
+<div id="render-div"><div id="renderer-container"></div></div>
 
 <br/>
-<a href="https://platform.skyciv.com/api/v3#model-header" target="_blank" class="sample-code-btn">Test our Renderer</a>
+<a href="https://platform.skyciv.com/api/v3#model-header" target="_blank" className="sample-code-btn">Test our Renderer</a>
 <br/>
 
 <br/><br/>
@@ -112,7 +115,7 @@ Saves screenshot to device. Example:
 		"filename": "my_screenshot.png"
 	})
 ```
-<!-- <a class="sample-code-btn" onclick='viewer.screenshot.get({"axis": true,"background": "white","filename": "my_screenshot.png"})' >Try Me!</a> -->
+<!-- <a className="sample-code-btn" onclick='viewer.screenshot.get({"axis": true,"background": "white","filename": "my_screenshot.png"})' >Try Me!</a> -->
 
 
 ## Settings and Menu

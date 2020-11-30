@@ -5,7 +5,7 @@ title: AISC Design Check
 
 This tutorial will cover a full example of how to run build a model and run an AISC 360-16 LRFD Steel Design Check.
 
-This tutorial is based on the following simple example: <a href="/api/v3/html/aisc-check.html">download or visit this sample file</a>.
+This tutorial is based on the following simple example: <a href="/api-v3-docs/html/aisc-check.html">download or visit this sample file</a>.
 
 
 ## Page setup

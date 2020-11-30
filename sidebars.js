@@ -1,6 +1,6 @@
 module.exports = {
 	someSidebar: {
-		Docusaurus: ['doc1', 'doc2', 'doc3','mdx'],
+		Docusaurus: ['doc1', 'doc2', 'doc3', 'mdx'],
 		'Getting Started': [
 			'getting-started',
 			'the-request-object',
@@ -18,6 +18,7 @@ module.exports = {
 			'S3D.session',
 			'S3D.model',
 			'S3D.results',
+			'S3D.design',
 			'S3D.member_design',
 			'S3D.rc_design',
 			'S3D.SB',

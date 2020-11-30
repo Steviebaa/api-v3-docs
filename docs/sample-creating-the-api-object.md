@@ -229,4 +229,4 @@ If the [`S3D.file.save`](docs-S3D.file.md#s3dfilesave) function is used, this mo
 
 The following image is a visual representation of what the [JSON model object](#samples3dmodel) above will create.
 
-<img src="/api/v3/img/images/sample-simple-beam.png"/>
+<img src="/api-v3-docs/img/images/sample-simple-beam.png"/>

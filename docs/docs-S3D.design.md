@@ -1,27 +1,21 @@
 ---
-id: S3D.member_design
-title: S3D.member_design (deprecated)
+id: S3D.design
+title: S3D.design
 ---
 
 ---
 
-:::warning
+The `S3D.design` namespace provides functions that allow beam and column design for timber, steel and reinforced concrete sections to various design standards.
 
-This namespace is now deprecated. Please use [`S3D.design`](s3d.design) instead.
+Standard member design namespace: [`S3D.design.member`](#member-design)
 
-:::
-
----
-
-The `S3D.member_design` namespace provides functions that allow beam and column design for timber and steel sections to various design standards.
-
-<div class="banner info">
-	To design concrete sections, see <a href="S3D.rc_design"><code>S3D.rc_design</code></a>.
-</div>
+Reinforced concrete design namespace: [`S3D.design.rc`](#reinforced-concrete-design)
 
 ---
 
-## `S3D.member_design.getInput`
+## **Member Design**
+
+### `S3D.design.member.getInput`
 
 Generates and returns member design input object. Engineers can then use this input object to change design parameters, materials or loads.
 
@@ -30,11 +24,11 @@ Generates and returns member design input object. Engineers can then use this in
 |  `s3d_model` | `object` | A [s3d_model](docs-s3d-model.md) object  | An object containing information that represents a Structural 3D model. |
 |  `design_code` | `string` | `AISC_360-16_LRFD`, <br/>`AISC_360-16_ASD`, <br/>`AISC_360-10_LRFD`, <br/>`AISC_360-10_ASD`, <br/>`EN_1993-1-1-2005`, <br/>`BS_5950-1-2000`, <br/>` NDS_2018_ASD`, <br/>`NDS_2018_LRFD`, <br/>`CSA_S16-14`, <br/>`AS_4100-1998`,<br/>`AS_1720-2010`, <br/>`AS_4600-2005`, <br/>`AISI_S100-12_ASD`, <br/>`AISI_S100-12_LRFD`, <br/>`DNV_2-7-1_2006_with_AISC_360-10_ASD`, <br/>`DNV_2-7-1_2006_with_AISC_360-10_LRFD` | The design code for which the design object in the response should represent. |
 
-#### Sample input for the `S3D.member_design.getInput` function
+#### Sample input for the `S3D.design.member.getInput` function
 
 ```json
 {
-  "function": "S3D.member_design.getInput",
+  "function": "S3D.design.member.getInput",
   "arguments": {
     "design_code": "AISC_360-16_LRFD",
     "s3d_model": S3D_MODEL_OBJECT
@@ -43,10 +37,10 @@ Generates and returns member design input object. Engineers can then use this in
 ```
 
 
-#### Sample response for the `S3D.member_design.getInput` function
+#### Sample response for the `S3D.design.member.getInput` function
 
 <div class="banner info">
-The <code>data</code> property in the response will represent the <code>design_obj</code> object which can be passed into <a href="#s3dmember_designcheck"><code>S3D.member_design.check</code></a>. It provides all necessary input to run a member design check.
+The <code>data</code> property in the response will represent the <code>design_obj</code> object which can be passed into <a href="#s3ddesign.membercheck"><code>S3D.design.member.check</code></a>. It provides all necessary input to run a member design check.
 </div>
 
 ```json
@@ -61,7 +55,7 @@ The <code>data</code> property in the response will represent the <code>design_o
 
 ----
 
-## `S3D.member_design.check`
+### `S3D.design.member.check`
 
 Run a member design check from in accordance with various standards. The function will calculate all member capacities, utility ratios and generate summary and in-depth calculation reports.
 
@@ -69,13 +63,13 @@ Run a member design check from in accordance with various standards. The functio
 | :--- | :---: | :---    | :---         |
 |  `s3d_model` | `object` | A [s3d_model](docs-s3d-model.md) object  | An object containing information that represents a Structural 3D model. |
 |  `design_code` | `string` | `AISC_360-16_LRFD`, <br/>`AISC_360-16_ASD`, <br/>`AISC_360-10_LRFD`, <br/>`AISC_360-10_ASD`, <br/>`EN_1993-1-1-2005`, <br/>`BS_5950-1-2000`, <br/>` NDS_2018_ASD`, <br/>`NDS_2018_LRFD`, <br/>`CSA_S16-14`, <br/>`AS_4100-1998`,<br/>`AS_1720-2010`, <br/>`AS_4600-2005`, <br/>`AISI_S100-12_ASD`, <br/>`AISI_S100-12_LRFD`, <br/>`DNV_2-7-1_2006_with_AISC_360-10_ASD`, <br/>`DNV_2-7-1_2006_with_AISC_360-10_LRFD` | The design code for which the design object in the response should represent. |
-|  `design_obj` | `object` | An object | Optional design input object. This can be obtained via `S3D.member_design.getInput` and altered to adjust design parameters.<br/>   |
+|  `design_obj` | `object` | An object | Optional design input object. This can be obtained via `S3D.design.member.getInput` and altered to adjust design parameters.<br/>   |
 
-#### Sample input for the `S3D.member_design.check` function
+#### Sample input for the `S3D.design.member.check` function
 
 ```json
 {
-  "function": "S3D.member_design.check",
+  "function": "S3D.design.member.check",
   "arguments": {
     "design_code": "AISC_360-16_LRFD",
     "s3d_model": S3D_MODEL_OBJECT,
@@ -87,7 +81,7 @@ Run a member design check from in accordance with various standards. The functio
 <a href="https://platform.skyciv.com/api/v3?preload_function=S3D.member_design.check" target="_blank" class="sample-code-btn">Try <code>S3D.member_design.check</code></a>
 <br/>
 
-#### Sample response for the `S3D.member_design.check` function
+#### Sample response for the `S3D.design.member.check` function
 
 The response will provide all member capacities, ratios, design reports and a summary for easy checking of pass/fail criteria. The format of this response may differ with the various `design_code` designations.
 
@@ -145,12 +139,12 @@ The response will provide all member capacities, ratios, design reports and a su
 
 ----
 
-## `S3D.member_design.optimize`
+### `S3D.design.member.optimize`
 
 This function will iterate through the [library of sections](docs-S3D.SB.md#s3dsbgetlibrarytree) to find the most efficient design section based on a given utility ratio and other settings. The sections in the model will be designed based on the input provided in the [`S3D.model.set`](docs-S3D.model.md#s3dmodelset) function. For instance, if HSS sections are used in `S3D.model.set`, the function will iterate the HSS sections catalog.
 
 <div class="banner info">
-<code>S3D.member_design.optimize</code> should only be used if <a href="S3D.model#s3dmodelsolve"><code>S3D.model.solve</code></a> has been executed earlier in the session.
+<code>S3D.design.member.optimize</code> should only be used if <a href="S3D.model#s3dmodelsolve"><code>S3D.model.solve</code></a> has been executed earlier in the session.
 </div>
 
 | Key  | Type  | Accepts | Description  |
@@ -159,11 +153,11 @@ This function will iterate through the [library of sections](docs-S3D.SB.md#s3ds
 |  `simplified` | `boolean` | `true`, `false` | Simplified results will give you the best result and it's corresponding utility ratio. For full results of each run, set simplified to `false`  |
 |  `settings` | `object` | An object | Additional settings including maximum utility ratio and height/width settings. Section height/width units based on units in [s3d_model](docs-s3d-model.md) during [`S3D.model.set`](docs-S3D.model.md#s3dmodelset) <br/>   |
 
-#### Sample input for the `S3D.member_design.optimize` function
+#### Sample input for the `S3D.design.member.optimize` function
 
 ```json title="/src/components/HelloCodeTitle.js"
 {
-  "function": "S3D.member_design.optimize",
+  "function": "S3D.design.member.optimize",
   "arguments": {
     "design_code": "AISC_360-10_ASD",
     "simplified": true,
@@ -191,7 +185,7 @@ This function will iterate through the [library of sections](docs-S3D.SB.md#s3ds
 <br/>
 <br/>
 
-#### Sample response for the `S3D.member_design.optimize` function
+#### Sample response for the `S3D.design.member.optimize` function
 
 The response will provide the lightest section and it's corresponding utility ratio. From the above input, it is evident that the UR is limited to 0.8 and the section heights are limited to between 8 and 12 inches.
 
@@ -227,7 +221,11 @@ The response will provide the lightest section and it's corresponding utility ra
 
 ----
 
-## `standalone.member.check`
+<br/>
+
+----
+
+### `standalone.member.check`
 
 Simplified design checks can be performed without the need to run an analysis first. Provide loads, members, sections and parameters to run design checks. The API will calculate all member capacities, utility ratios and generate summary and in-depth calculation reports.
 
@@ -314,4 +312,207 @@ Simplified design checks can be performed without the need to run an analysis fi
 ```
 
 <a href="https://platform.skyciv.com/api/v3?preload_function=standalone.member.check" target="_blank" class="sample-code-btn">Try <code>standalone.member.check</code></a>
+
 <br/>
+
+---
+
+
+## **Reinforced Concrete Design**
+
+### `S3D.design.rc.getInput`
+
+Generates and returns the RC member design input object (referred to as `design_obj` below) that will feed into the concrete design check calculations. The `design_obj` can then be adjusted to use preferred design parameters, reinforcement, materials or loads.
+
+| Key  | Type  | Accepts | Description  |
+| :--- | :---: | :---    | :---         |
+|  `s3d_model` | `object` | A [s3d_model](docs-s3d-model.md) object  | An object containing information that represents a Structural 3D model. |
+|  `design_code` | `string`   |  `ACI_318`, <br/>`AS_3600`, <br/>`EN_2`, <br/>`CSA_A23`, <br/>`BS_8110`| Design code identifier. |
+
+
+#### Sample input for the `S3D.design.rc.getInput` function
+
+```json
+{
+  "function": "S3D.design.rc.getInput",
+  "arguments": {
+    "s3d_model": S3D_MODEL_OBJECT,
+    "design_code": "ACI_318"
+  }
+}
+```
+
+#### Sample response for the `S3D.design.rc.getInput` function
+
+The response will give a `design_obj` object that can be passed into [`S3D.design.rc.check`](#s3ddesign.rccheck). It provides all necessary input to run a member design check.
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Output-->
+```json
+{
+  "msg": "Design input object generated successfully for aci318",
+  "status": 0,
+  "data": {} // design_obj containing parameters, sections and forces from analysis
+}
+```
+<!--Member Input Example-->
+```json
+// Under the "design_members" property, each member has the following parameters:
+{
+  "section_shape": "round",
+  "member_id": "1",
+  "member_type": "column",
+  "member_length": 177.2,
+  "K_hor": "1",
+  "K_vert": "1",
+  "k": "0.104",
+  "concrete_strength": "4000",
+  "rebar_strength": "60000",
+  "shear_rebar_strength": "50000",
+  "lim_crack_width": "0.012",
+  "section_prop": {
+    "diameter": 18
+  },
+  "sec_position": [
+    {"members": 1, "position": 0},
+    {"members": 2, "position": 50},
+    {"members": 3, "position": 100}
+  ],
+  "long_rebar": [
+    {
+      "cover": "2.5",
+      "diameter": "0.625",
+      "end": "100",
+      "from": "bottom",
+      "number": "10",
+      "start": "0",
+      "y": "2.5"
+    }
+  ],
+  "shear_rebar": [
+    {
+      "number": "2",
+      "diameter": "0.625",
+      "spacing": "10",
+      "start": "0",
+      "end": "100"
+    }
+  ],
+  "forces_data": {},
+  "spans": [[177.2, 0, 177.2]],
+  "defl_live_load_lim": "180",
+  "defl_long_term_lim": "240",
+  "defl_live_load_percent": "50",
+  "spec_load": {
+    "DL_sustained": "SW1",
+    "DL_deflection": "SW1",
+    "LL_deflection": "SW1"
+  }
+}	
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+<br/>
+
+----
+
+### `S3D.design.rc.check`
+
+Run an RC design check from US, Australian, European, Canadian and British standards. The API will calculate all member capacities, utility ratios and generate summary and in-depth calculation reports.
+
+| Key  | Type  | Accepts | Description  |
+| :--- | :---: | :---    | :---         |
+|  `s3d_model` | `object` | A [s3d_model](docs-s3d-model.md) object  | An object containing information that represents a Structural 3D model. |
+|  `design_code` | `string`   |  `ACI_318`, <br/>`AS_3600`, <br/>`EN_2`, <br/>`CSA_A23`, <br/>`BS_8110`| Design code identifier. |
+|  `design_obj` | `object` | An object | Optional design input object. This can be obtained from [`S3D.design.rc.getInput`](#s3ddesign.rcgetinput) and altered to adjust design parameters. |
+
+#### Sample input for the `S3D.design.rc.check` function
+
+```json
+{
+  "function": "S3D.design.rc.check",
+  "arguments": {
+    "design_code": "AS_3600",
+    "s3d_model": S3D_MODEL_OBJECT,
+    "design_obj": DESIGN_OBJECT
+  }
+}
+```
+
+<br/>
+<a href="https://platform.skyciv.com/api/v3?preload_function=S3D.rc_design.check" target="_blank" class="sample-code-btn">Try <code>S3D.rc_design.check</code></a>
+<br/>
+
+#### Sample response for the `S3D.design.rc.check` function
+
+The response will provide all member capacities, ratios and design reports. The format of this response may depend on the different `design_code` designation.
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Beam Table Results-->
+```json
+// Each beam or column member will return the following results
+{
+  "member_id": "2",
+  "section_pos": 0,
+  "pos_flexure": {
+    "flexure_ratio": 0,
+    "flexure_status": "OK",
+    "as_ratio": 0.9534794309880812,
+    "as_status": "OK"
+  },
+  "pos_crack_width": {
+    "ratio": 0.9485182233116682,
+    "status": "OK"
+  },
+  "pos_LTC": {
+    "ratio": 0,
+    "status": "OK"
+  },
+  "neg_flexure": {
+    "flexure_ratio": 0,
+    "flexure_status": "NG",
+    "as_ratio": 0,
+    "as_status": "NG"
+  },
+  "neg_crack_width": {
+    "ratio": 0,
+    "status": "NG"
+  },
+  "neg_LTC": {
+    "ratio": 0,
+    "status": "OK"
+  },
+  "shear": {
+    "ratio": 3.7037037037037033,
+    "status": "NG"
+  },
+  "pos_defl": {
+    "ratio": 0,
+    "status": "OK"
+  }
+}
+
+```
+
+<!--Beam Results-->
+```json
+// Each beam or column result will also include a link to a report
+{
+  "member_id": "2",
+  "section_pos": 0,
+  "html_summary_link": "https://solver.skyciv.com/temp/view_report_QCioViaPgrgeLgCK_beam_0.php",
+  "html_download_link": "https://solver.skyciv.com/temp/download_html_report_QCioViaPgrgeLgCK_beam_0.php",
+  "pdf_download_link": "https://solver.skyciv.com/temp/download_report_QCioViaPgrgeLgCK_beam_0.php"
+}
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+<br/>
+
+---
+
+### Custom sections
+
+SkyCiv supports custom sections and reinforcement checks via SkyCiv's General Section Designer. Use [S3D.SB.runGSD](docs-S3D.SB.md#s3dsbrungsd) to run custom as seen in the image below.
+
+<img src="https://skyciv.com/wp-content/uploads/2019/03/general-concrete-section-design-software.png"/>

@@ -8,7 +8,7 @@ The SkyCiv assembly library provides a series of functions that can be used to q
 ### Getting Started
 Include the <a href="https://api.skyciv.com/dist/v3/javascript/skyciv-parametric-dist.js">skyciv-parametric-dist.js</a> file on your page to get access to the parametric library. Download the sample file below and open it in a web browser to build a Gable Roof warehouse model using only the assembly library. 
 
-<a href="/api/v3/html/assembly.html">Sample Assemblies Functionality</a>.
+<a href="/html/assembly.html">Sample Assemblies Functionality</a>.
 
 ## `SKYCIV.structure.parametric.init`
 Pass in an assembly object or a model object and an assembly object into this function to build the overall assembly. This function will return a model object back
@@ -50,11 +50,11 @@ The value of `"truss_style"` can be `"warren"`, `"gambrel"` ,`"straight"` ,`"cro
 
 
 ----
-# Steps
+## **Steps**
 
 The Steps part of the assembly object govern how the model gets built. The order of which steps are define will also greatly affect the output model. Each cad function generates a cad element. 
 
-## Cad Line Function
+### Cad Line Function
 The Cad Line function allows users to generate a member based on a certain set of inputs. This function can be called three ways and each way requires different set of inputs.
 <!--DOCUSAURUS_CODE_TABS-->
 <!--By Vector-->
@@ -100,7 +100,7 @@ The Cad Line function allows users to generate a member based on a certain set o
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-## Cad Plate Function
+### Cad Plate Function
 Users can add parametric plates that are dynamic and move with the rest of the structure. Cad Plates are built on points only.
 
 ```js
@@ -119,7 +119,7 @@ Users can add parametric plates that are dynamic and move with the rest of the s
 
 
 
-## Cad Repeat Function
+### Cad Repeat Function
 The Cad Repeat function allows users to repeat existing cad elements in a certain direction or based on the points given. Cad functions to be repeated must be set before this function in the array of steps.
 <!--DOCUSAURUS_CODE_TABS-->
 <!--By Vector-->
@@ -150,7 +150,7 @@ The Cad Repeat function allows users to repeat existing cad elements in a certai
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-## Cad Rotate Function
+### Cad Rotate Function
 The Cad Rotate function allows users to rotate existing cad elements. Similar to cad repeat, cad functions to be rotated must be set before this function in the array of steps.
 
 ---
@@ -164,7 +164,7 @@ The Cad Rotate function allows users to rotate existing cad elements. Similar to
 }
 ```
 
-## Cad Curve Function
+### Cad Curve Function
 The Cad Curve function allows users to generate curve members when given a certain inputs. This function can be called by specifying the arc to rotate about or the start and end points of the curve.
 <!--DOCUSAURUS_CODE_TABS-->
 <!--By CenterArc-->
@@ -196,7 +196,7 @@ The Cad Curve function allows users to generate curve members when given a certa
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-## Cad Join Function
+### Cad Join Function
 The Cad Join function allows users to join nodes and nodes of any existing cad elements to another set of nodes. 
 ```js
 {
@@ -221,7 +221,7 @@ The Cad Join function allows users to join nodes and nodes of any existing cad e
 	section_id: 1
 }
 ```
-## Cad Truss Function
+### Cad Truss Function
 The Cad Truss function allows users to create trusses based on given input. It can generate 3D trusses when given nodes or 2D trusses when given parameters.
 <!--DOCUSAURUS_CODE_TABS-->
 <!--By Nodes-->

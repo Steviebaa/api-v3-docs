@@ -128,7 +128,7 @@ The response will return design wind speed, elevations, topography, wind and sno
 ```
 Here is a sample of the elevation image that is returned when `elevation_img: true` :
 
-<img src="/api/v3/img/images/loads-elevation.png"/>
+<img src="/api-v3-docs/img/images/loads-elevation.png"/>
 
 ## `site_data`
 

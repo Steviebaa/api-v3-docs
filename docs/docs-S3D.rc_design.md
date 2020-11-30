@@ -1,7 +1,15 @@
 ---
 id: S3D.rc_design
-title: S3D.rc_design 
+title: S3D.rc_design (deprecated)
 ---
+
+---
+
+:::warning
+
+This namespace is now deprecated. Please use [`S3D.design`](s3d.design) instead.
+
+:::
 
 ---
 
