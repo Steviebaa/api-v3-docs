@@ -3,26 +3,29 @@ id: s3d-model
 title: The s3d_model object
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ---
 
-<div class="banner info">
-	For modelling functions, see <a href="S3D.model"><code>S3D.model</code></a>.
-</div>
+:::note
+For modelling functions, see <a href="S3D.model"><code>S3D.model</code></a>.
+:::
 
 Throughout the rest of the documentation, the SkyCiv Structural 3D model may be referred to as the `s3d_model` object. The `s3d_model` object is a JSON object that describes the structural model. This data contains all the necessary information to model and analyse the structure. 
 
 
 A convenient way to examine what an existing model looks like as JSON, is to open the file in [SkyCiv Structural 3D](https://platform.skyciv.com/structural) and click:
 
-`File` ➡️ `Export` ➡️ `SkyCiv File (JSON for API)`
+`File` ➡ `Export` ➡ `SkyCiv File (JSON for API)`
 
 This will download the JSON object of the current model, and may help as a guide to building the `s3d_model` object. Similarly, a JSON file can be tested directly through the UI by clicking: 
 
-`File` ➡️ `Import` ➡️ `SkyCiv File (JSON for API)`
+`File` ➡ `Import` ➡ `SkyCiv File (JSON for API)`
 
-<div class="banner tip">
+:::tip
 By exporting from the S3D platform, the <code>sections</code> object may look complicated. If you would like to keep the <code>s3d_model</code> more compact, it can be substituted to use the <code>load_section</code> property as seen in <a href="#sections"><code>sections</code></a>. You can get all available sections by inspecting the <a href="https://platform.skyciv.com/section-builder">Section Builder Platform</a> or via the <a href="S3D.SB#s3dsbgetlibrarytree"><code>S3D.SB.getLibraryTree</code></a> function. 
-</div>
+:::
 
 
 <a href="https://platform.skyciv.com/api/v3#model-header" target="_blank" class="sample-code-btn">Try <code>s3d_model</code></a>
@@ -71,6 +74,7 @@ The `s3d_model` property is comprised of the following properties:
 | `non_linear_tolerance` | `string` | E.g. `1` = 1% | Non-Linear Analysis will continue to solve until this tolerance (relative error percentage) is met. A smaller number takes longer for convergence. | |
 | `non_linear_theory` | `string` | `small`, `finite` || |
 | `auto_stabilize_model` | `boolean` | `true`, `false` | Enable this if your model has stability issues, especially if the non-linear analysis will not converge. The solver will attempt to automatically stabilize nodes that are not restrained. Its is recommended to leave this disabled unless you are having issues with stability. | |
+| `member_offsets_axis` | `string` | `global`, `local` | Specifies if member offsets should be relative to the local or global axis system. | `local` |
 
 #### `units`
 
@@ -87,12 +91,21 @@ The `s3d_model` property is comprised of the following properties:
 |  `translation` | `string`   |  `mm`, `in`  | |
 |  `stress` | `string`   |  `ksi`, `psi`, `mpa`, `kpa`  | |
 
-<div class="banner info">
-	Unit systems can not be mixed between Imperial/Metric.
-</div>
+:::important
+Unit systems can not be mixed between Imperial/Metric.
+:::
 
 #### Sample code for the `settings` object
-Option 1 - Partially specify:
+
+<Tabs
+  defaultValue="option-1"
+  values={[
+    { label: 'Option 1 - Partially specify', value: 'option-1', },
+    { label: 'Option 2 - Entirely specified', value: 'option-2', },
+  ]
+}>
+  <TabItem value="option-1">
+
 ```json
 {
     "settings": {
@@ -102,7 +115,9 @@ Option 1 - Partially specify:
 }
 ```
 
-Option 2 - Entirely specified:
+  </TabItem>
+  <TabItem value="option-2">
+
 ```json
 {
     "settings": {
@@ -128,9 +143,13 @@ Option 2 - Entirely specified:
         "non_linear_tolerance": "1",
         "non_linear_theory": "small",
         "auto_stabilize_model": false
+        "member_offsets_axis" : "global"
     }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 <br/>
 
@@ -139,7 +158,7 @@ Option 2 - Entirely specified:
 ### `nodes`
 
 Each node is defined by an object. The node key is the ID of that node in the structure.
-\
+
 The `x`, `y`, and `z` properties represent the coordinates in the global axes, respectively.
 
 | Key  | Type    |      Description    |
@@ -148,14 +167,14 @@ The `x`, `y`, and `z` properties represent the coordinates in the global axes, r
 |   `y`   |   `float` |   The y coordinate of the node    |
 |   `z`   |   `float` |   The z coordinate of the node    |
 
-<div class="banner info">
+:::note
 The coordinates must be entered in the units defined by the <code>length</code> property of the <a href="#units"><code>units</code></a> object.
-</div>
+:::
 
 #### Sample code for the `nodes` object
 
 The following JSON snippet describes 2 nodes, with IDs 1 & 2. 
-\
+
 Node 1 lies at the origin, Node 2 lies a distance of 1 (in the relevant units) from the origin, along the x axis.
 
 ```json
@@ -202,9 +221,9 @@ Members are defined by two `nodes`, the `section`, rotation angle, and `fixity` 
 |   `offset_By`   |   `float` | Any number. |    The local y distance that the member is offset from its centroid at node B.<br/>If "type" property = "cable", this value is ignored.   | `0`  |
 |   `offset_Bz`   |   `float` | Any number. |    The local z distance that the member is offset from its centroid at node B.<br/>If "type" property = "cable", this value is ignored.   | `0`  |
 
-<div class="banner info">
+:::note
 The offsets must be entered in the units defined by the <code>section_length</code> property of the <a href="#units"><code>units</code></a> object.
-</div>
+:::
 
 #### Sample code for the `members` object
 
@@ -260,9 +279,9 @@ Plates are 2D structural elements. Each plate is defined by an object which is c
 | `state` | `string` | `stress`, `strain` | Denotes whether the plate is in a state of plane stress or plane strain. | `stress` |
 | `is_meshed` | `boolean` | `true`, `false` | Indicates whether the plate is already meshed. If the plate is meshed, then the elements making up the mesh must be specified in the [`meshed_plates`](#meshed_plates) object, and have their `parent_plate` property set to the ID of this plate. | `false` |
 
-<div class="banner tip">
-	Each plate defined is also known as a <code>parent_plate</code> as it can be further meshed into smaller plate elements.
-</div>
+:::note
+Each plate defined is also known as a <code>parent_plate</code> as it can be further meshed into smaller plate elements.
+:::
 
 #### Sample code for the `plates` object
 
@@ -330,20 +349,36 @@ Individual sections are stored in the sections object. Each section is defined b
 Sections can be specified in the following ways:
 
 1. By providing the `load_section` property which contains the path to the section as seen in the <a href="https://platform.skyciv.com/section-builder">SkyCiv Section Builder</a>.
-2. Using the output from the <a href="https://platform.skyciv.com/section-builder">SkyCiv Section Builder</a>, which includes geometric coordinates of the cross section shape. Sections specified using this format support design, stress calculation, and can be rendered in S3D.
-3. As custom input: The geometric coordinates of the cross section shape are not considered, and only the essential section properties (Iz, Iy, J etc.) must be specified. Sections specified using this format do **not** support design, stress calculation, or rendering in S3D, making them appropriate for analysis, but not design.
+2. By providing the `load_custom` property which contains the name of a custom shape defined in <a href="https://platform.skyciv.com/section-builder">SkyCiv Section Builder</a>.
+3. Using the output from the <a href="https://platform.skyciv.com/section-builder">SkyCiv Section Builder</a>, which includes geometric coordinates of the cross section shape. Sections specified using this format support design, stress calculation, and can be rendered in S3D.
+4. As custom input: The geometric coordinates of the cross section shape are not considered, and only the essential section properties (Iz, Iy, J etc.) must be specified. Sections specified using this format do **not** support design, stress calculation, or rendering in S3D, making them appropriate for analysis, but not design.
+
+:::note
+The section builder format contains all the properties of the custom input format plus the <code>version</code> & <code>aux</code> properties.
+:::
 
 
-<p class='banner tip'>The section builder format contains all the properties of the custom input format plus the <code>version</code> & <code>aux</code> properties.</p>
+<Tabs
+  defaultValue="option-1"
+  values={[
+    { label: 'load_section', value: 'option-1', },
+    { label: 'load_custom', value: 'option-2', },
+    { label: 'SB JSON format', value: 'option-3', },
+    { label: 'Custom JSON format', value: 'option-4', },
+  ]
+}>
+  <TabItem value="option-1">
 
-#### 1. Using the `load_section` property
+
+Using the `load_section` property.
+
 
 | Key  | Type    |  Description     |
 | :--- | :---    |  :---            |
 | `load_section`  |   `[string]` | Provided as an array of 4 strings (see example below). It is the path of the section in the section library, obtained by inspection from within <a href="https://platform.skyciv.com/section-builder">SkyCiv Section Builder</a> or by attaining the library tree via [S3D.SB.getLibraryTree](docs-S3D.SB.md#s3dsbgetlibrarytree)|
 | `material_id`   |   `integer`   |   The ID of the material that is assigned to the section. [`materials`](#materials) are defined in their own object. |
 
-#### Sample code for the `sections` object using the `load_section` property
+Sample code for the `sections` object using the `load_section` property
 
 ```json
 {
@@ -356,7 +391,34 @@ Sections can be specified in the following ways:
 }
 ```
 
-#### 2. Section Builder JSON format
+  </TabItem>
+  <TabItem value="option-2">
+
+Using the `load_custom` property
+
+| Key  | Type    |  Description     |
+| :--- | :---    |  :---            |
+| `load_custom`  |   `string` | The name of a custom shape defined in <a href="https://platform.skyciv.com/section-builder">SkyCiv Section Builder</a>.|
+| `material_id`   |   `integer`   |   The ID of the material that is assigned to the section. [`materials`](#materials) are defined in their own object. |
+
+Sample code for the `sections` object using the `load_custom` property
+
+```json
+{
+    "sections": {
+        "1": {
+            "load_custom": "reinforced-channel",
+            "material_id": 1
+        }
+    }
+}
+```
+
+  </TabItem>
+  <TabItem value="option-3">
+
+
+Section Builder JSON format
 
 | Key  | Type    |  Description     |
 | :--- | :---    |  :---            |
@@ -370,7 +432,7 @@ Sections can be specified in the following ways:
 | `shear_area_y`  |   `float`<br/>(optional) |   Shear Area in the section y-axis.<br/>To model Euler-Bernoulli beams (i.e. to ignore shear deformation - recommended), leave this value as Empty or Zero.<br/>To model Timoshenko Beams (i.e. to include the effect of shear deformation), specify a value.<br/>*This should not be confused with the property of the same name within the* `aux` *object.* |
 | `aux`   |   `object`    |   The `aux` property is an object containing various section property values.<br/>It contains the geometric coordinates of the cross section, among other properties, which are calculated via the [Section Builder Platform](https://platform.skyciv.com/section-builder). For brevity, these individual properties are not detailed here.<br/>To understand how to create a section via the [Section Builder Platform](https://platform.skyciv.com/section-builder) and implement it into the API, please contact us at info@skyciv.com   |
 
-#### Sample code for the `sections` object using the Section Builder format 
+Sample code for the `sections` object using the Section Builder format 
 
 ```json
 {
@@ -409,7 +471,10 @@ Sections can be specified in the following ways:
 }
 ```
 
-#### 3. Custom Input JSON format
+  </TabItem>
+  <TabItem value="option-4">
+
+Custom Input JSON format
 
  Key  | Type    |  Description     |
 | :--- | :---    |  :---            |
@@ -422,7 +487,7 @@ Sections can be specified in the following ways:
 | `Iz`    |   `float` |   Area moment of inertia about the section z axis.    |
 | `J`     |   `float` |   Torsion constant.    |
 
-#### Sample code for the `sections` object using the Custom Input option
+Sample code for the `sections` object using the Custom Input option
 The following JSON Snippet shows both methods of specifying the section data:
 
 ```json
@@ -441,6 +506,9 @@ The following JSON Snippet shows both methods of specifying the section data:
     }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 <br/>
 
@@ -754,57 +822,61 @@ The following JSON snippet shows each type of Area Load, applied to the same nod
 
 ```json
 {
-    "area_loads": {
-        "1": {
-            "type": "one_way",
-            "nodes": [1,2,3,4],
-            "members": null,
-            "mag": 10,
-            "direction": "X",
-            "elevations": null,
-            "mags": null,
-            "column_direction": "1,2", // Loads will span parallel to the direction from node 1 to node 2
-            "loaded_members_axis": null,
-            "LG": "LG"
-        },
-        "2": {
-            "type": "two_way",
-            "nodes": [1,2,3,4],
-            "members": null,
-            "mag": 10,
-            "direction": "X",
-            "elevations": null,
-            "mags": null,
-            "column_direction": null,
-            "loaded_members_axis": null,
-            "LG": "LG"
-        },
-        "3": {
-            "type": "column_wind_load",
-            "nodes": [1,2,3,4],
-            "members": null,
-            "mag": null,
-            "direction": null,
-            "elevations": "0,1.5,3", // Pressure 1 (5 kPa) will apply from 0 to 1.5 m, Pressure 2 (10 kPa) will apply from 1.5 to 3 m
-            "mags": "5,10",
-            "column_direction": "1,2", // Loads will span parallel to the direction from node 1 to node 2
-            "loaded_members_axis": null,
-            "LG": "LG"
-        },
-        "4": {
-            "type": "open_structure",
-            "nodes": [1,2,3,4],
-            "members": null,
-            "mag": 10,
-            "direction": "Y",
-            "elevations": null,
-            "mags": null,
-            "column_direction": null,
-            "loaded_members_axis": "all",
-            "LG": "LG",
-        }
-    }
+	"area_loads": {
+		"1": {
+			"type": "one_way",
+			"nodes": [1, 2, 3, 4],
+			"members": null,
+			"mag": 10,
+			"direction": "X",
+			"elevations": null,
+			"mags": null,
+            // Loads will span parallel to the direction from node 1 to node 2
+            "column_direction": "1,2", 
+			"loaded_members_axis": null,
+			"LG": "LG"
+		},
+		"2": {
+			"type": "two_way",
+			"nodes": [1, 2, 3, 4],
+			"members": null,
+			"mag": 10,
+			"direction": "X",
+			"elevations": null,
+			"mags": null,
+			"column_direction": null,
+			"loaded_members_axis": null,
+			"LG": "LG"
+		},
+		"3": {
+			"type": "column_wind_load",
+			"nodes": [1, 2, 3, 4],
+			"members": null,
+			"mag": null,
+			"direction": null,
+            // Pressure 1 (5 kPa) will apply from 0 to 1.5 m, Pressure 2 (10 kPa) will apply from 1.5 to 3 m
+            "elevations": "0,1.5,3", 
+			"mags": "5,10",
+            // Loads will span parallel to the direction from node 1 to node 2
+            "column_direction": "1,2", 
+			"loaded_members_axis": null,
+			"LG": "LG"
+		},
+		"4": {
+			"type": "open_structure",
+			"nodes": [1, 2, 3, 4],
+			"members": null,
+			"mag": 10,
+			"direction": "Y",
+			"elevations": null,
+			"mags": null,
+			"column_direction": null,
+			"loaded_members_axis": "all",
+			"LG": "LG"
+		}
+	}
 }
+
 ```
 
 <br/>
@@ -813,7 +885,7 @@ The following JSON snippet shows each type of Area Load, applied to the same nod
 
 ### `self_weight`
 The self-weight for the whole model in S3D may be toggled on or off using the `self_weight` object.
-\
+
 It is also possible to apply a gravity multiplier in the global x, y or z axes.
 
 | Key | Type | Accepts | Description |
@@ -827,7 +899,6 @@ It is also possible to apply a gravity multiplier in the global x, y or z axes.
 The following JSON snippet enables the self-weight, and indicates that gravity should act in the negative y axis, with g = 1 × g:
 
 ```json
-
 {
    "self_weight": {
       "enabled": true,

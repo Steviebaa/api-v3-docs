@@ -5,7 +5,7 @@ sidebar_label: Packages
 ---
 
 The SkyCiv Team has developed packages for some of the popular languages to help keep your code clean! 
-\
+
 We highly recommend the use of these packages and we will further develop them to include useful tools in the future.
 
 We support packages for Javascript, Python 3 and NuGet, with the following package technologies:
@@ -21,7 +21,6 @@ We support packages for Javascript, Python 3 and NuGet, with the following packa
 
 ----
 
-<br/>
 
 <!-- START NPM -->
 
@@ -42,7 +41,7 @@ If you already know how to use NPM then here is what you're looking for:
 ```js
 const skyciv = require('skyciv');
 
-const data = {YOUR_API_OBJECT}
+const data = YOUR_API_OBJECT
 
 skyciv.request(data, function(res) {
     // Do something with results object "res"
@@ -79,7 +78,8 @@ You will need to install Node.js to your machine. Download the right version for
 
 Once you have installed Node.js, open the command terminal and type in `node -v`. The terminal should print a version number confirming that it has been installed. Likewise, you should now have access to the `npm` command, so type in `npm -v` and the terminal will print the NPM version number.
 
-<img style={{maxWidth: '30rem'}} src="/api-v3-docs/img/images/npm-version-check.png"/>
+<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/npm-version-check.png"/>
+
 
 #### Creating a project
 
@@ -89,11 +89,11 @@ We can now create a project and add the `skyciv` dependency to it, so lets do th
 2. Open this folder in your preferred code editor. [VS Code](https://code.visualstudio.com/download) is great (and free) for this purpose.
 3. In the VS Code menu, click `Terminal > New Terminal` and your will now have a command line available at the bottom of the window.
 
-<img style={{maxWidth: '60rem'}} src="/api-v3-docs/img/images/vscode-open-terminal.png"/>
+<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/vscode-open-terminal.png"/>
 
 4. In the terminal, you should see the path that points to your `sample-project` directory. Enter the command `npm init -y`. The option `-y` means "answer yes to all the following questions". This will create the npm file named package.json which will contain those answers. By default the entry point to your app will now be the file named index.js which is common convention. You can see this under the "main" key in the package.json file.
 
-<img style={{maxWidth: '60rem'}} src="/api-v3-docs/img/images/npm-init-demo.png"/>
+<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/npm-init-demo.png"/>
 
 *Quick note*: The package.json file means you can send the project to other people without the node_modules folder and they will know what dependencies the project relies on. These can automatically be installed by using the command `npm i` (or `npm install`) from within the project directory. The node_modules folder can get ***very*** big so its nice to not include it therefore only making copies of the dependencies where they're required.
 
@@ -113,7 +113,7 @@ For this sample we will omit the options parameter. The request will default to 
 ```js
 const skyciv = require('skyciv'); // This gives you access to the skyciv code that we added to the project
 
-const data = __YOUR_API_OBJECT__; // This will be your API object. See the link below for sample code.
+const data = YOUR_API_OBJECT; // This will be your API object. See the link below for sample code.
 
 skyciv.request(data, function (res) {
 	// Do something with results object "res"
@@ -136,8 +136,6 @@ To use NPM packages in the future, you can start from [Creating a project](#crea
 
 ----
 
-<br/>
-
 <!-- START Pip -->
 
 ## **Pip - Python 3**
@@ -153,7 +151,7 @@ If you already know how to use Pip then here is what you're looking for:
 ```py
 import skyciv
 
-data = {YOUR_API_OBJECT}
+data = YOUR_API_OBJECT
 
 options = {
     version: 3,
@@ -234,7 +232,7 @@ For this sample we will omit the options parameter. The request will default to 
 ```py
 import skyciv # This gives you access to the skyciv code that we installed
 
-data = __YOUR_API_OBJECT__ # This will be your API object. See the link below for sample code
+data = YOUR_API_OBJECT # This will be your API object. See the link below for sample code
 
 results = skyciv.request(data) # Use the built in skyciv.request() function
 
@@ -256,8 +254,6 @@ To use Pip packages in the future, you can start from [Creating a project](#crea
 
 ----
 
-<br/>
-
 <!-- START NuGet -->
 
 ## **NuGet - C#**
@@ -265,13 +261,13 @@ To use Pip packages in the future, you can start from [Creating a project](#crea
 ### What is NuGet?
 
 NuGet is the package manager for .Net languages. NuGet allows developers to package up code, especially libraries, for others to use.
-\
+
 The easiest way to install NuGet packages is using [Microsoft](https://visualstudio.microsoft.com/) [Visual Studio](#installing-from-visual-studio).
 
 #### How do I get NuGet?
 
 The NuGet Package Manager is installed automatically with Visual Studio.
-\
+
 If you wish to use NuGet with another IDE, such as Visual Studio Code, you must download the [.Net Core SDK](https://www.microsoft.com/net/download/).
 
 ### Installing the SkyCiv API Package

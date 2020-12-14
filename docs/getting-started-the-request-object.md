@@ -33,7 +33,7 @@ The JSON object that is sent to the API is comprised of three components:
       {
          "function": "S3D.model.set",
          "arguments": {
-            "s3d_model": S3D_MODEL_OBJECT_OBJECT
+            "s3d_model": S3D_MODEL_OBJECT
          }
       },
       {
@@ -147,7 +147,17 @@ To keep the response size down, you can set `response_data_only` to `true`. This
 
 ## `functions`
 
-The `functions` property takes an `array` of objects - each object defines a function to be executed. The functions should be in order of desired execution. The following is a list of available functions:
+The `functions` property takes an `array` of objects - each object defines a function to be executed. The functions should be in order of desired execution. 
+
+#### Common arguments
+
+| Key  | Type  | Accepts | Description  | Default |
+| :--- | :---: | :---    | :---         | :---    |
+|  `return_data` | `boolean` | `true`, `false` | Omits data object from the response for the respective function. | `false` |
+
+<br/>
+
+The following is a list of available functions:
 
 ### Session
 * [`S3D.session.start`](docs-S3D.session.md)
@@ -167,17 +177,16 @@ The `functions` property takes an `array` of objects - each object defines a fun
 * [`S3D.results.getAnalysisReport`](docs-S3D.results.md#s3dresultsgetanalysisreport)
 * [`S3D.model.takeScreenshot`](docs-S3D.results.md#s3dmodeltakescreenshot)
 
-### Member design
-* [`S3D.member_design.getInput`](docs-S3D.member_design.md#s3dmember_designgetinput)
-* [`S3D.member_design.check`](docs-S3D.member_design.md#s3dmember_designcheck)
-* [`S3D.member_design.passFailCheck`](docs-S3D.member_design.md#s3dmember_designpassfailcheck)
-* [`S3D.member_design.optimize`](docs-S3D.member_design.md#s3dmember_designoptimize)
-* [`standalone.member.check`](docs-S3D.member_design.md#standalonemembercheck)
-
-### RC design
-* [`S3D.rc_design.getInput`](docs-S3D.rc_design.md#s3drc_designgetinput)
-* [`S3D.rc_design.check`](docs-S3D.rc_design.md#s3drc_designcheck)
-* [`S3D.SB.GSD`](docs-S3D.rc_design.md#s3dsbgsd)
+### Design
+#### Standard member design
+* [`S3D.design.member.getInput`](docs-S3D.design.md#s3ddesignmembergetinput)
+* [`S3D.design.member.check`](docs-S3D.design.md#s3ddesignmembercheck)
+* [`S3D.design.member.optimize`](docs-S3D.design.md#s3ddesignmemberoptimize)
+* [`standalone.member.check`](docs-S3D.design.md#standalonemembercheck)
+#### Reinforced concrete design
+* [`S3D.design.rc.getInput`](docs-S3D.design.md#s3ddesignrcgetinput)
+* [`S3D.design.rc.check`](docs-S3D.design.md#s3ddesignrccheck)
+* [Custom sections](docs-S3D.design.md#custom-sections)
 
 ### Section builder
 * [`S3D.SB.loadLibraryShape`](docs-S3D.SB.md#s3dsbloadlibraryshape)
@@ -193,4 +202,3 @@ The `functions` property takes an `array` of objects - each object defines a fun
 * [`S3D.file.open`](docs-S3D.file.md#s3dfileopen)
 * [`S3D.file.share`](docs-S3D.file.md#s3dfileshare)
 * [`S3D.file.getFileDirectory`](docs-S3D.file.md#s3dfilegetfiledirectory)
-

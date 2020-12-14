@@ -10,41 +10,42 @@ In this example we are creating the entire payload object by supplying the follo
 * The [`auth`](the-request-object#auth) object
 * The [`options`](the-request-object#options) object
 * The [`functions`](the-request-object#functions) array - an array of objects defining which functions to run `[ {...}, {...}, ... ]`
-    1. Starting a session - using function S3D.session.start
-    2. Setting the model  - using function [S3D.model.set](docs-S3D.model.md#s3dmodelset) 
-    3. Running an analysis - using function [S3D.model.solve](docs-S3D.model.md#s3dmodelsolve) 
+    1. Starting a session - using function [`S3D.session.start`](docs-S3D.session.md#s3dsessionstart)
+    2. Setting the model  - using function [`S3D.model.set`](docs-S3D.model.md#s3dmodelset) 
+    3. Running an analysis - using function [`S3D.model.solve`](docs-S3D.model.md#s3dmodelsolve) 
 
-```json
-{
-   "auth": {
-      "username": "YOUR_SKYCIV_USERNAME",
-      "key": "YOUR_SKYCIV_API_KEY"
-   },
-   "options": {
-      "validate_input": true
-   },
-   "functions": [
-      {
-         "function": "S3D.session.start",
-         "arguments": {
-            "keep_open": false
-         }
-      },
-      {
-         "function": "S3D.model.set",
-         "arguments": {
-            "s3d_model": "S3D_MODEL_OBJECT_DATA"
-         }
-      },
-      {
-         "function": "S3D.model.solve",
-         "arguments": {
-            "analysis_type": "nonlinear",
-            "repair_model": true
-         }
-      }
-   ]
-}
+```js title="example-request-object.js"
+const customRequest = {
+	auth: {
+		username: 'YOUR_SKYCIV_USERNAME',
+		key: 'YOUR_SKYCIV_API_KEY',
+	},
+	options: {
+		validate_input: true,
+	},
+	functions: [
+		{
+			function: 'S3D.session.start',
+			arguments: {
+				keep_open: false,
+			},
+		},
+		{
+			function: 'S3D.model.set',
+			arguments: {
+				s3d_model: 'S3D_MODEL_OBJECT',
+			},
+		},
+		{
+			function: 'S3D.model.solve',
+			arguments: {
+				analysis_type: 'nonlinear',
+				repair_model: true,
+			},
+		},
+	],
+};
+
 ```
 
 <br/>
@@ -59,7 +60,7 @@ In this example we are creating the entire payload object by supplying the follo
 
 The model data is the JSON formatted object you create that describes your structure. The following is an example of a simple beam.
 
-```json
+```json title="s3d_model-example.json"
 {
    "settings": {
    "units": {
@@ -218,10 +219,7 @@ The model data is the JSON formatted object you create that describes your struc
    "nodal_masses": {},
    "nodal_masses_conversion_map": {},
    "spectral_loads": {},
-   "groups": [
-   null,
-   null
-   ]
+   "groups": []
 }
 ```
 

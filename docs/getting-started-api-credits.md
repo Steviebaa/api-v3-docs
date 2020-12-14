@@ -43,15 +43,18 @@ Each account level comes with a set number of API credits which can be viewed on
 
 With every API call, users will also receive a summary of their usage. for that API call. and how much of your monthly quota has been used:
 
-```js
+```json
+{
 	"monthly_api_credits": {
 		"quota": 6000,
 		"total_used": 35,
 		"used_this_call": 2
 	}
+}
 ```
 
 <br/>
+
 Users can review their API usage at any time from [account activity page](https://platform.skyciv.com/account/api). This will include a view of your usage limit, and a log of all your API calls:
 
 <br/>

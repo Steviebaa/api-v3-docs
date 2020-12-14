@@ -150,7 +150,8 @@ Runs a structural analysis on your [`s3d_model`](docs-s3d-model.md).
 |  `repair_model` | `boolean` | `true`, `false` | If [`S3D.model.repair`](#s3dmodelrepair) should be executed prior to solving. | `false` |
 |  `return_results` | `boolean` | `true`, `false` | To minimize data downloaded, solve data will be removed. | `true` |
 |  `format` | `string` | `json`, `csv` | Export results in particular file format. | `json` | 
-|  `filter` | `[string]` | `envelope`, `load_case`, `load_group`, `load_combo`, `envelope_abs_max` | Only return specific data in the response. You can also provide names you have applied to load combination. E.g. `LC1`.  | All results | 
+|  `lc_filter` | `[string]` | `envelope`, `load_case`, `load_group`, `load_combo`, `envelope_abs_max` | Only return specific data in the response. You can also provide names you have applied to load combination. E.g. `LC1`.  | All cases | 
+|  `result_filter` | `[string]` |  `reactions`, `member_displacements`, `member_forces`, `member_stresses`, `member_lengths`, `member_stations`, `member_discontinuities`, `member_minimums`, `member_maximums`, `member_peak_results`, `plate_displacements`, `plate_forces`, `plate_stresses`, `plate_minimums`, `plate_maximums`, `plate_peak_results`, `buckling`, `dynamic_frequency`  | Only return specific data in the response. | All results | 
 
 <div class="banner tip">
 	Using the <code>filter</code> property will drastically reduce the size of the response therefore saving on download data and time.
@@ -163,7 +164,8 @@ Runs a structural analysis on your [`s3d_model`](docs-s3d-model.md).
   "arguments": {
     "analysis_type": "nonlinear",
 	"repair_model": true,
-	"filter": ["envelope_abs_max", "LC1"]
+	"lc_filter": ["envelope_abs_max", "LC1"],
+	"result_filter": ["member_peak_results", "member_discontinuities"]
   }
 }
 ```
@@ -293,4 +295,87 @@ Mesh the plates in the [`s3d_model`](docs-s3d-model.md) object.
     "plate_ids": [1, 3]
   }
 }
+```
+
+<br/>
+
+---
+
+## `S3D.model.script`
+
+Allows you to run custom JavaScript functions to access all S3D functionality such as intersecting or adding new nodes or members. Available functions can be [found here](apps-s3d-functions.md).
+
+| Key  | Type  | Accepts | Description  |
+| :--- | :---: | :---    | :---         |
+|  `script` | `string`  | A string of JavaScript |  Define custom actions to run. Available functions can be [found here](apps-s3d-functions.md). |
+
+#### Sample input for the `S3D.model.script` function
+
+```js
+const custom_script = `
+  //splits members by intersecting nodes
+  S3D.structure.members.intersect({ 
+    "typ": "intersectingMembers",
+    "memberNo": 343
+  });
+
+  //node already exists here, so will return existing node ID
+  var new_node_id = S3D.structure.nodes.add({ 
+    x: 32,
+    y: 36,
+    z: 104
+  });
+
+  var new_node_id2 = S3D.structure.nodes.add({ 
+    x: 32,
+    y: 0,
+    z: 0
+  });
+
+  S3D.structure.supports.add({
+    node_id:2, 
+    fixity:"FFFFFR"
+  });
+
+  S3D.structure.members.add({
+    nodeA: new_node_id,
+    nodeB: new_node_id2,
+    section_id: 1,
+    type: "continuous", //normal, rigid, tension, compression, cable
+    fixityA: "FFFFFF",
+    fixityB: "FFFFFF",
+    offsetsA: "0,0,0",
+    offsetsB: "0,0,0",
+  });
+
+  S3D.UI.update({redraw:true});
+`;
+
+const functions = [
+  {
+    function: 'S3D.session.start',
+    arguments: {
+      keep_open: false,
+    },
+  },
+  {
+    function: 'S3D.model.set',
+    arguments: {
+      s3d_model: S3D_MODEL_OBJECT,
+    },
+  },
+  {
+    function: 'S3D.model.script',
+    arguments: {
+      script: custom_script,
+    },
+  },
+  {
+    function: 'S3D.file.save',
+    arguments: {
+      name: 'Script Testing',
+      path: 'api',
+    },
+  }
+]
 ```
