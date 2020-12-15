@@ -37,7 +37,7 @@ Generates and returns the RC member design input object (referred to as `design_
 {
   "function": "S3D.rc_design.getInput",
   "arguments": {
-    "s3d_model": S3D_MODEL_OBJECT,
+    "s3d_model": MODEL_OBJECT,
     "design_code": "ACI_318"
   }
 }
@@ -134,7 +134,7 @@ Run an RC design check from US, Australian, European, Canadian and British stand
   "function": "S3D.rc_design.check",
   "arguments": {
     "design_code": "AS_3600",
-    "s3d_model": S3D_MODEL_OBJECT,
+    "s3d_model": MODEL_OBJECT,
     "design_obj": DESIGN_OBJECT
   }
 }

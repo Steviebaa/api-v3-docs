@@ -37,7 +37,7 @@ Generates and returns member design input object. Engineers can then use this in
   "function": "S3D.member_design.getInput",
   "arguments": {
     "design_code": "AISC_360-16_LRFD",
-    "s3d_model": S3D_MODEL_OBJECT
+    "s3d_model": MODEL_OBJECT
   }
 }
 ```
@@ -78,7 +78,7 @@ Run a member design check from in accordance with various standards. The functio
   "function": "S3D.member_design.check",
   "arguments": {
     "design_code": "AISC_360-16_LRFD",
-    "s3d_model": S3D_MODEL_OBJECT,
+    "s3d_model": MODEL_OBJECT,
     "design_obj": DESIGN_OBJECT
   }
 }

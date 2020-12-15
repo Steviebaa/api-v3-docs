@@ -33,7 +33,7 @@ The JSON object that is sent to the API is comprised of three components:
       {
          "function": "S3D.model.set",
          "arguments": {
-            "s3d_model": S3D_MODEL_OBJECT
+            "s3d_model": MODEL_OBJECT
          }
       },
       {

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 ---
 
 :::note
-For modelling functions, see <a href="S3D.model"><code>S3D.model</code></a>.
+For modelling functions, see [`model`](S3D.model.md).
 :::
 
 Throughout the rest of the documentation, the SkyCiv Structural 3D model may be referred to as the `s3d_model` object. The `s3d_model` object is a JSON object that describes the structural model. This data contains all the necessary information to model and analyse the structure. 
@@ -17,14 +17,17 @@ Throughout the rest of the documentation, the SkyCiv Structural 3D model may be 
 
 A convenient way to examine what an existing model looks like as JSON, is to open the file in [SkyCiv Structural 3D](https://platform.skyciv.com/structural) and click:
 
-`File` ➡ `Export` ➡ `SkyCiv File (JSON for API)`
+<div style={{textAlign: "center"}}><code>File → Export → SkyCiv File (JSON for API)</code></div>
+<br/>
 
 This will download the JSON object of the current model, and may help as a guide to building the `s3d_model` object. Similarly, a JSON file can be tested directly through the UI by clicking: 
 
-`File` ➡ `Import` ➡ `SkyCiv File (JSON for API)`
+<div style={{textAlign: "center"}}><code>File → Import → SkyCiv File (JSON for API)</code></div>
+<br/>
+
 
 :::tip
-By exporting from the S3D platform, the <code>sections</code> object may look complicated. If you would like to keep the <code>s3d_model</code> more compact, it can be substituted to use the <code>load_section</code> property as seen in <a href="#sections"><code>sections</code></a>. You can get all available sections by inspecting the <a href="https://platform.skyciv.com/section-builder">Section Builder Platform</a> or via the <a href="S3D.SB#s3dsbgetlibrarytree"><code>S3D.SB.getLibraryTree</code></a> function. 
+By exporting from the S3D platform, the <code>sections</code> object may look complicated. If you would like to keep the <code>s3d_model</code> more compact, it can be substituted to use the <code>load_section</code> property as seen in <a href="#sections"><code>sections</code></a>. You can get all available sections by inspecting the <a href="https://platform.skyciv.com/section-builder">Section Builder Platform</a> or via the [`S3D.SB.getLibraryTree`](S3D.SB#s3dsbgetlibrarytree) function. 
 :::
 
 
@@ -106,7 +109,7 @@ Unit systems can not be mixed between Imperial/Metric.
 }>
   <TabItem value="option-1">
 
-```json
+```json title="simple-settings.json"
 {
     "settings": {
         "units": "imperial", // Will load default imperial units
@@ -118,7 +121,7 @@ Unit systems can not be mixed between Imperial/Metric.
   </TabItem>
   <TabItem value="option-2">
 
-```json
+```json title="detailed-settings.json"
 {
     "settings": {
         "units": {
@@ -177,7 +180,7 @@ The following JSON snippet describes 2 nodes, with IDs 1 & 2.
 
 Node 1 lies at the origin, Node 2 lies a distance of 1 (in the relevant units) from the origin, along the x axis.
 
-```json
+```json title="nodes-sample.json"
 {
     "nodes": {
         "1": {
@@ -233,7 +236,7 @@ The first member spans from node 1 to node 4, is not rotated about its own axis,
 
 The second member is a cable, spanning from node 2 to 5, and uses the second `section` in the list of sections.
 
-```json
+```json title="members-sample.json"
 {
     "members": {
         "1": {
@@ -287,7 +290,7 @@ Each plate defined is also known as a <code>parent_plate</code> as it can be fur
 
 The following JSON snippet shows a meshed, plane stress, mindlin plate from nodes 4 to 7:
 
-```json
+```json title="plates-sample.json"
 {
     "plates": {
         "1": {
@@ -324,7 +327,7 @@ Meshed Plates are the 2D elements (triangular or quadrilateral) that make up a p
 #### Sample code for the `meshed_plates` object
 The following JSON snippet shows a triangular plate which originates from plate 1 as defined by the `parent_plate` property:
 
-```json
+```json title="meshed_plates-sample.json"
 {
     "meshed_plates": {
         "1": {
@@ -380,7 +383,7 @@ Using the `load_section` property.
 
 Sample code for the `sections` object using the `load_section` property
 
-```json
+```json title="sections-sample.json"
 {
     "sections": {
         "1": {
@@ -403,7 +406,7 @@ Using the `load_custom` property
 
 Sample code for the `sections` object using the `load_custom` property
 
-```json
+```json title="sections-sample.json"
 {
     "sections": {
         "1": {
@@ -434,7 +437,7 @@ Section Builder JSON format
 
 Sample code for the `sections` object using the Section Builder format 
 
-```json
+```json title="sections-sample.json"
 {
     "sections": {
         "1": { 
@@ -490,7 +493,7 @@ Custom Input JSON format
 Sample code for the `sections` object using the Custom Input option
 The following JSON Snippet shows both methods of specifying the section data:
 
-```json
+```json title="sections-sample.json"
 {
     "sections": {
         "1": { 
@@ -527,7 +530,7 @@ Individual materials are stored in the materials object. Each material is define
 #### Sample code for the `materials` object
 The following JSON snippet adds two materials, Steel & Aluminium, to the model.
 
-```json
+```json title="materials-sample.json"
 {
     "materials": {
         "1": {
@@ -567,7 +570,7 @@ Individual supports are stored in the supports object. Each support is defined b
 #### Sample code for the `supports` object
 The following JSON snippet creates two supports: the first is fully fixed, the second is released in all rotational degrees of freedom, and has a spring in the translational y direction.
 
-```json
+```json title="supports-sample.json"
 {
     "supports": {
       "1": { // Add a fully fixed support
@@ -614,7 +617,7 @@ Settlement loads may be applied using the `settlements` object. Each settlement 
 #### Sample code for the `settlements` object
 The following JSON snippet shows a settlement load applied to node 1, in the global translational x & y directions, and about the global y axis:
 
-```json
+```json title="settlements-sample.json"
 {
     "settlements": {
        "1": {
@@ -651,7 +654,7 @@ Individual point loads are stored in the `point_loads` object. Each point load i
 #### Sample code for the `point_loads` object
 The following JSON snippet will add two point loads to the S3D model, a nodal point load, and a member point load midway along the member:
 
-```json
+```json title="point_loads-sample.json"
 {
     "point_loads": {
         "1": {
@@ -696,7 +699,7 @@ Individual moments (moment loads) are stored in the `moments` object. Each momen
 #### Sample code for the `moments` object
 The following JSON snippet will add two moments to the S3D model, a nodal moment, and a point moment midway along a member:
 
-```json
+```json title="moments-sample.json"
 {
     "moments": {
        "1": {
@@ -744,7 +747,7 @@ Individual distributed loads are stored in the `distributed_loads` object. Each 
 #### Sample code for the `distributed_loads` object
 The following JSON snippet shows a trapezoidal load in the global y axis, applied to the middle 80% of member 9:
 
-```json
+```json title="distributed_loads-sample.json"
 {
     "distributed_loads": {
         "1": {
@@ -783,7 +786,7 @@ Pressures are uniform loads applied to plates. Each pressure is an object contai
 #### Sample code for the `pressures` object
 The following JSON snippet shows a pressure in the global y axis, applied to plate 1:
 
-```json
+```json title="pressures-sample.json"
 {
     "pressures": {
         "1": {
@@ -820,7 +823,7 @@ Area Loads are uniform loads applied to an area, that are distributed to the mem
 #### Sample code for the `area_loads` object
 The following JSON snippet shows each type of Area Load, applied to the same nodes, 1, 2, 3 & 4:
 
-```json
+```json title="area_loads-sample.json"
 {
 	"area_loads": {
 		"1": {
@@ -898,7 +901,7 @@ It is also possible to apply a gravity multiplier in the global x, y or z axes.
 #### Sample code for the `self_weight` object
 The following JSON snippet enables the self-weight, and indicates that gravity should act in the negative y axis, with g = 1 × g:
 
-```json
+```json title="self_weight-sample.json"
 {
    "self_weight": {
       "enabled": true,
@@ -926,7 +929,7 @@ Each object in the `load_combinations` array represents an individual combinatio
 #### Sample code for the `load_combinations` object
 The following JSON snippet shows the creation of two load combinations. The first load combination contains 3 load groups, all with a factor of 1. The second load combination contains 2 load groups, the self-weight has a load factor of 1, and LG1 has a load factor of 1.5.
 
-```json
+```json title="load_combinations-sample.json"
 {
     "load_combinations": [
         {
