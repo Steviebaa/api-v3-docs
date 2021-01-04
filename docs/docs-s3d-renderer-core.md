@@ -3,9 +3,11 @@ id: s3d-renderer-core
 title: SKYCIV.renderer Core
 ---
 
-<script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
+import RendererSample from '../src/components/Renderer/RendererSample.js'
+
+<!-- <script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="/api-v3-docs/js/renderer-sample.js"></script>
+<script src="/api-v3-docs/js/renderer-sample.js"></script> -->
 
 ---
 
@@ -41,7 +43,7 @@ Simply include the [s3d-renderer.js file](https://api.skyciv.com/dist/v3/javascr
 
 This will initialise the viewer Object and display the following in your container:
 
-<div id="render-div"><div id="renderer-container"></div></div>
+<RendererSample />
 
 <br/>
 <a href="https://platform.skyciv.com/api/v3#model-header" target="_blank" className="sample-code-btn">Test our Renderer</a>

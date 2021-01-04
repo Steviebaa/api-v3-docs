@@ -18,13 +18,15 @@ Used to get the analysis results.
 
 | Key  | Type  | Accepts | Description  | Default |
 | :--- | :---: | :---    | :---         | :---    |
-|  `result_filter` | `[string]` |  `reactions`, `member_displacements`, `member_forces`, `member_stresses`, `member_lengths`, `member_stations`, `member_discontinuities`, `member_minimums`, `member_maximums`, `member_peak_results`, `plate_displacements`, `plate_forces`, `plate_stresses`, `plate_minimums`, `plate_maximums`, `plate_peak_results`, `buckling`, `dynamic_frequency`  | Only return specific data in the response. | All results |
+|  `lc_filter` | `[string]` | `envelope`, `load_case`, `load_group`, `load_combo`, `envelope_abs_max` | Only return specific data in the response. You can also provide names you have applied to load combination. E.g. `LC1`.  | All cases | 
+|  `result_filter` | `[string]` |  `reactions`, `member_displacements`, `member_forces`, `member_stresses`, `member_lengths`, `member_stations`, `member_discontinuities`, `member_minimums`, `member_maximums`, `member_peak_results`, `plate_displacements`, `plate_forces`, `plate_stresses`, `plate_minimums`, `plate_maximums`, `plate_peak_results`, `buckling`, `dynamic_frequency`  | Only return specific data in the response. | All results | 
 
 
 ```json title="Sample input for S3D.results.get"
 {
   "function": "S3D.results.get",
-  //"result_filter": ["member_peak_results", "member_discontinuities"]
+  "result_filter": ["member_peak_results", "member_discontinuities"],
+  "lc_filter": ["envelope", "envelope_abs_max"]
 }
 ```
 

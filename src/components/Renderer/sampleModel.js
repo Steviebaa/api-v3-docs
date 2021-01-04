@@ -1,23 +1,4 @@
-import React from 'react';
-
-export const Renderer = () => {
-
-	let viewer;
-
-	viewer = new SKYCIV.renderer({
-		container_selector: '#renderer-container',
-	});
-	viewer.model.set(s3d_model);
-
-	var sett = viewer.settings.get();
-	sett.visibility.global_axis = false;
-
-	return (
-		<div id='render-div'><div id='renderer-container'></div></div>
-	);
-};
-
-const s3d_model = {
+export const sampleModel = {
 	dataVersion: 20,
 	settings: {
 		units: {
