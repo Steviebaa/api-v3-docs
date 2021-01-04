@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import { sampleModel } from './sampleModel';
 
 class RendererSample extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			loaded: false,
+		};
+	}
+
 	componentDidMount() {
 		// Get renderer script and append it to the html file
 		const script = document.createElement('script');
-		// script.src = 'https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js';
-		script.src = '/api-v3-docs/js/skyciv-renderer-dist-1.0.1.js';
+		script.src = 'https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist-1.0.1.js';
+		// script.src = '/api-v3-docs/js/skyciv-renderer-dist-1.0.1.js';
 		script.async = true;
 
 		document.body.appendChild(script);
