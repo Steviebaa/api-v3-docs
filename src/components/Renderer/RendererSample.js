@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Intertwine } from '../Loaders/Intertwine';
 import { sampleModel } from './sampleModel';
 
 class RendererSample extends Component {
@@ -10,17 +11,17 @@ class RendererSample extends Component {
 	}
 
 	componentDidMount() {
-		// Get renderer script and append it to the html file
+		const that = this;
 
+		// Get renderer script and append it to the html file
 		const script = 'https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist-1.0.1.js';
 		const element = document.createElement('script');
 		element.async = true;
-
 		document.body.appendChild(element);
 
-		element.src = script;
-
 		element.onload = function () {
+			that.setState({ loaded: true });
+
 			// Create an instance of the viewer
 			const viewer = new SKYCIV.renderer({
 				container_selector: '#renderer-container',
@@ -34,14 +35,19 @@ class RendererSample extends Component {
 			viewer.model.buildStructure();
 			viewer.render();
 		};
+
+		// Add onload before src to make sure cache script fires onload.
+		element.src = script;
 	}
 
 	render() {
-		return (
+		return this.state.loaded ? (
 			<div
 				id='renderer-container'
 				style={{ width: '100%', height: '500px', position: 'relative' }}
 			></div>
+		) : (
+			<Intertwine />
 		);
 	}
 }
