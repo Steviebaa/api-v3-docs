@@ -15,7 +15,7 @@ The `S3D.session` namespace provides functions to manage a session with the API.
 At the beginning of every API session, the `S3D.session.start` function must be the first function in the array. This initiates a session and will return a [`session_id`](getting-started-the-request-object.md#session_id-optional) which can be used in subsequent calls made in the following 30 minutes to skip the verification process, thereby dramatically reducing the time to response.
 
 :::important
-`S3D.session.start` must always be the first function even if [`session_id`](the-request-object.md#session_id-optional) is provided.
+`S3D.session.start` must always be the first function even if [`session_id`](getting-started-the-request-object.md#session_id-optional) is provided.
 :::
 
 | Key  | Type  | Accepts | Description  | Default |
@@ -49,5 +49,5 @@ After authenticating using the API [`key`](getting-started-the-request-object.md
 ```
 
 :::tip
-The returned [session_id](the-request-object.md#session_id-optional) can be provided in the [auth](the-request-object.md#auth) object of subsequent calls to make the request faster.
+The returned [session_id](getting-started-the-request-object.md#session_id-optional) can be provided in the [auth](getting-started-the-request-object.md#auth) object of subsequent calls to make the request faster.
 :::

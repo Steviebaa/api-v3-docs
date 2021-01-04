@@ -141,7 +141,7 @@ The response will provide all member capacities, ratios, design reports and a su
 This function will iterate through the [library of sections](docs-S3D.SB.md#s3dsbgetlibrarytree) to find the most efficient design section based on a given utility ratio and other settings. The sections in the model will be designed based on the input provided in the [`S3D.model.set`](docs-S3D.model.md#s3dmodelset) function. For instance, if HSS sections are used in `S3D.model.set`, the function will iterate the HSS sections catalog.
 
 :::note
-`S3D.design.member.optimize` should only be used if [`S3D.model.solve`](S3D.model.md#s3dmodelsolve) has been executed earlier in the session.
+`S3D.design.member.optimize` should only be used if [`S3D.model.solve`](docs-S3D.model.md#s3dmodelsolve) has been executed earlier in the session.
 :::
 
 | Key  | Type  | Accepts | Description  |

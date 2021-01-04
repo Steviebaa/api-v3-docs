@@ -8,7 +8,7 @@ title: S3D.model
 The `S3D.model` namespace provides functions which take action on the [`s3d_model`](docs-s3d-model.md) object.
 
 :::note
-To create a model object, see [s3d_model](s3d-model.md).
+To create a model object, see [s3d_model](docs-s3d-model.md).
 :::
 
 ---

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 ---
 
 :::note
-For modelling functions, see [`model`](S3D.model.md).
+For modelling functions, see [`model`](docs-S3D.model.md).
 :::
 
 Throughout the rest of the documentation, the SkyCiv Structural 3D model may be referred to as the `s3d_model` object. The `s3d_model` object is a JSON object that describes the structural model. This data contains all the necessary information to model and analyse the structure. 

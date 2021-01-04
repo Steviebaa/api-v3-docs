@@ -253,7 +253,7 @@ If `"type": "image"` is provided, then an image will be returned in base64 forma
 Generates a structural analysis report and returns a download link to retrieve the report.
 
 :::important
-[`S3D.model.set`](S3D.model.md#s3dmodelset) and [`S3D.model.solve`](S3D.model.md#s3dmodelsolve) must be executed earlier in the session for the Analysis Report to be generated.
+[`S3D.model.set`](docs-S3D.model.md#s3dmodelset) and [`S3D.model.solve`](docs-S3D.model.md#s3dmodelsolve) must be executed earlier in the session for the Analysis Report to be generated.
 :::
 
 #### Variables
@@ -320,7 +320,7 @@ The function will return links to download and preview your analysis report in t
 Takes screenshots of the model from specified perspectives.
 
 :::important
-[`S3D.model.set`](S3D.model.md#s3dmodelset) and [`S3D.file.open`](S3D.file.md#s3dfileopen) must be executed earlier in the session for screenshots to be taken.
+[`S3D.model.set`](docs-S3D.model.md#s3dmodelset) and [`S3D.file.open`](docs-S3D.file.md#s3dfileopen) must be executed earlier in the session for screenshots to be taken.
 :::
 
 | Key  | Type  | Accepts | Description  |
