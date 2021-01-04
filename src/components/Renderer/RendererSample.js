@@ -11,25 +11,29 @@ class RendererSample extends Component {
 
 	componentDidMount() {
 		// Get renderer script and append it to the html file
-		const script = document.createElement('script');
-		script.src = 'https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist-1.0.1.js';
-		// script.src = '/api-v3-docs/js/skyciv-renderer-dist-1.0.1.js';
-		script.async = true;
 
-		document.body.appendChild(script);
+		const script = 'https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist-1.0.1.js';
+		const element = document.createElement('script');
+		element.async = true;
 
-		// Create an instance of the viewer
-		const viewer = new SKYCIV.renderer({
-			container_selector: '#renderer-container',
-		});
+		document.body.appendChild(element);
 
-		// Get sample model
-		const s3d_model = sampleModel;
+		element.src = script;
 
-		// Set and render sample model
-		viewer.model.set(s3d_model);
-		viewer.model.buildStructure();
-		viewer.render();
+		element.onload = function () {
+			// Create an instance of the viewer
+			const viewer = new SKYCIV.renderer({
+				container_selector: '#renderer-container',
+			});
+
+			// Get sample model
+			const s3d_model = sampleModel;
+
+			// Set and render sample model
+			viewer.model.set(s3d_model);
+			viewer.model.buildStructure();
+			viewer.render();
+		};
 	}
 
 	render() {
