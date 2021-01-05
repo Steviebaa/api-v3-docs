@@ -145,6 +145,7 @@ Get wind speed from site location, based on ASCE 7-10, ASCE 7-16, AS/NZS 1170, N
 | lng | `float` | Longitude of site location (used instead of project_address). E.g. -87.629800 for Chicago |
 
 Code specific variables
+
 | Key | Type | Design Code | Description/Options |
 | :------------- | :----------: | :----------: | :----------- |
 | risk_category | `string` | ASCE 7 | `"I"`, `"II"`, `"III"`, `"IV"` |
@@ -156,6 +157,7 @@ Code specific variables
 | importance_level | `string` | AS/NZS 1170 | Number between `"1"`, `"5"` specifying importance level <br/>Required for SLS and ULS wind speeds |
 
 Topography variables
+
 | Key | Type | Design Code | Description/Options |
 | :------------- | :----------: | :----------: | :----------- | 
 | terrain_category | `string` | AS/NZS 1170 | `"CAT2"`, `"CAT3"`, `"CAT4"` |
