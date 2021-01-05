@@ -4,9 +4,11 @@ title: Loads
 sidebar_label: Load Generator
 ---
 
+---
+
 Automate wind speed, wind design and snow calculations.
 
-
+---
 
 ## `loads.getLoads`
 

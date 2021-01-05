@@ -1,13 +1,10 @@
 ---
 id: s3d-renderer-core
-title: SKYCIV.renderer Core
+title: SKYCIV.renderer
+sidebar_label: SKYCIV.renderer
 ---
 
 import RendererSample from '../src/components/Renderer/RendererSample.js'
-
-<!-- <script src="https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="/api-v3-docs/js/renderer-sample.js"></script> -->
 
 ---
 
@@ -17,8 +14,6 @@ This client side renderer can be included in your applications so you can have a
 
 ---
 
-<img src="/api-v3-docs/img/images/3d-renderer-viewer.png" style={{width: '80%'}}/>
-
 Some of the functionality of this library includes:
 
 * Initialising the renderer
@@ -27,21 +22,62 @@ Some of the functionality of this library includes:
 * Mouse click events
 * Take screenshots
 
-## Getting Started
+## **Getting Started**
 
-Simply include the [s3d-renderer.js file](https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js) on your page. Then run the following to initialize the renderer:
+The following provides a walkthrough of how to set up the SkyCiv Renderer.
 
-```js
-	var viewer = new SKYCIV.renderer({
-		container_selector: '#renderer-container',
-	});
+### Renderer file
 
-	viewer.model.set(s3d_model);
-	viewer.model.buildStructure();
-	viewer.render();
+The following versions of the renderer are available:
+* [skyciv-renderer-dist-1.0.0.js](https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist-1.0.0.js)
+* [skyciv-renderer-dist-1.0.1.js](https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist-1.0.1.js)
+* [skyciv-renderer-dist.js](https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js)
+
+#### Which one?
+
+If the file will be hosted locally in the project, then choose the file with the latest version.
+
+If the `src` of the html script element is set to one of the above urls, then it is also a good idea to select the file with the latest version.
+
+The files with a version number will never change. The file named `skyciv-renderer-dist.js` will always be the latest version.
+
+### Add the renderer file to the project
+
+Simply add the [s3d-renderer.js file](https://api.skyciv.com/dist/v3/javascript/skyciv-renderer-dist.js) to your project to then include it as a script in your HTML file. Create a div with an id of `renderer-container`.
+
+```html title="Sample code of the HTML file"
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>SkyCiv Renderer</title>
+
+		<script src="/path/to/skyciv-renderer-dist.js"></script>
+		<script src="/path/to/initRenderer.js"></script>
+	</head>
+
+	<body>
+		<div id='renderer-container' style= "width: 100%; height: 500px; position: relative;"></div>
+	</body>
+</html>
 ```
 
-This will initialise the viewer Object and display the following in your container:
+### Initialize
+
+```js title="initRenderer.js"
+const viewer = new SKYCIV.renderer({
+	container_selector: '#renderer-container',
+});
+
+const s3d_model = {}; // Create an s3d_model
+
+viewer.model.set(s3d_model);
+viewer.model.buildStructure();
+viewer.render();
+```
+
+This will initialize the viewer Object and display the following in the container assuming that the [`s3d_model`](docs-s3d-model.md) variable is a valid object.
 
 <RendererSample />
 
@@ -53,125 +89,256 @@ This will initialise the viewer Object and display the following in your contain
 
 ----
 
-### `viewer.setMode(mode)`
+## **Viewer Methods**
 
-Toggle between the renderer mode, between either `"model"` or `"results"`
+The following methods are available via the `viewer` variable created in the sample code above. The `viewer` variable is an instance of `SKYCIV.renderer` which will often be referred to as `viewer` throughout the documentation.
 
+---
 
-<br/><br/>
+### `setMode`
 
-----
+**Function**: `viewer.setMode(mode)`
 
-### `viewer.setView(view)`
-Changes the camera view (front, side, top, iso)
+**Description**: Sets the viewer mode.
 
-<br/><br/>
+**Params**: The `mode` parameter can either be `model` or `results`.
 
-----
-
-### `viewer.render(callback, dont_call_model_update)`
-Makes the 3D graphics perform a render of the current state. No changes are visible to the renderer until this function is called. This function will call SKYCIV.renderer.model.update by default unless told not to.
-
-<br/><br/>
-
-----
-
-### `viewer.refresh()`
-Refreshes the render completely (rebuilds the structure and renders again)
-
-
-<br/><br/>
-
-----
-
-### `viewer.clear()`
-Refreshes the render completely (rebuilds the structure and renders again)
-
-<br/><br/>
-
-----
-
-### `viewer.screenshot.get(args)`
-Gets screenshot and returns the base64 data of the image in the callback. Example:
-```js
-	viewer.screenshot.get({
-		"axis": true,
-		"background": "white",
-		"callback": function(data) {
-			console.log(data);
-		}
-	})
-```
-
-
-<br/><br/>
-
-----
-
-### `viewer.screenshot.save(args)`
-Saves screenshot to device. Example:
-```js
-	viewer.screenshot.get({
-		"axis": true,
-		"background": "white",
-		"filename": "my_screenshot.png"
-	})
-```
-<!-- <a className="sample-code-btn" onclick='viewer.screenshot.get({"axis": true,"background": "white","filename": "my_screenshot.png"})' >Try Me!</a> -->
-
-
-## Settings and Menu
-
-### `viewer.settings.set(settings_object)`
-
-Updates the settings of your renderer. Here are some of the options that can be passed in as settings_object:
-
-```json
-{
-	"visibility": {
-		"logo": true,
-		"floor": false,
-		"nodes": false,
-		"members": true,
-		"plates": true,
-		"plates_mesh": false,
-		"global_origin_axis": false,
-		"global_axis": true,
-		"local_axis": false,
-	},
-	"colors": true,
-	"opacity": 1,
+```js title="Sample code for viewer.setMode"
+function setViewerMode() {
+	viewer.setMode("model");
 }
 ```
 
-<!-- ## `viewer.menu.enable()` -->
-<!-- The menu will show if its enabled. view.menu.disable() does opposite. -->
+---
 
-<!-- ## `viewer.menu.show()` -->
-<!-- Display renderer default menu. view.menu.hide() hides the menu. -->
+### `setView`
 
+**Function**: `viewer.setView(view)`
 
-## Click Events
+**Description**: Sets the view angle.
 
-### `viewer.mouse.enable()`
-Enable mouse interaction (on by default)
+**Params**: The `view` parameter can either be `front`, `side`, `top` or `iso`.
 
-### `viewer.mouse.selectedObject(object_type, ID)`
-Manually select/highlight an object in the scene ("node", "member, "plate") by its ID
-
-### `viewer.mouse.getSelectedObjects(object_type)`
-Gets all selected/highlighted objects in the scene. If object_type is specified then it will only return the highlighted objects of that type. Leave as null to get all selected elements.
-
-### `viewer.mouse.setOnObjectClickFunction(function)`
-Function to call when clicking/selecting an object
-
-```js
-	viewer.mouse.setOnObjectClickFunction(function(data) {
-		console.log('You have an clicked Element', data);
-		var element_id = data.id;
-		var type = data.type // ("member", "node", "plate")
-	});
-
+```js title="Sample code for viewer.setView"
+function setViewAngle() {
+	viewer.setView("front");
+}
 ```
 
+---
 
+### `render`
+
+**Function**: `viewer.render(callback, dont_call_model_update)`
+
+**Description**: Render the current state. Changes are not visible until this is called.
+
+**Params**: The callback function to run one the render completes and whether the viewer.model.update function should be called on completion - this defaults to true.
+
+```js title="Sample code for viewer.render"
+function renderModel() {
+	viewer.render(
+		function() { 
+			console.log("Render completed");
+		}, 
+		false);
+}
+```
+
+---
+
+### `refresh`
+
+**Function**: `viewer.refresh()`
+
+**Description**: Refreshes the render completely (rebuilds the structure and renders again).
+
+**Params**: none
+
+```js title="Sample code for viewer.refresh"
+function refreshRenderer() {
+	viewer.refresh()
+}
+```
+
+---
+
+### `clear`
+
+**Function**: `viewer.clear()`
+
+**Description**: Clear the render completely.
+
+**Params**: none
+
+```js title="Sample code for viewer.clear"
+function clearRenderer() {
+	viewer.clear()
+}
+```
+
+---
+
+### `screenshot.get`
+
+**Function**: `viewer.screenshot.get(args)`
+
+**Description**: Gets screenshot and returns the base64 data of the image in the callback.
+
+**Params**: Arguments object. See sample.
+
+```js title="Sample code for viewer.screenshot.get"
+function getScreenshot() {
+	viewer.screenshot.get({
+		axis: true,
+		background: 'white',
+		callback: function (data) {
+			console.log(data);
+		},
+	});
+}
+```
+
+---
+
+### `screenshot.save`
+
+**Function**: `viewer.screenshot.save(args)`
+
+**Description**: Saves screenshot to device.
+
+**Params**: Arguments object. See sample.
+
+```js title="Sample code for viewer.screenshot.save"
+function saveScreenshot() {
+	viewer.screenshot.save({
+		axis: true,
+		background: 'white',
+		filename: 'my_screenshot.png',
+	});
+}
+```
+
+<a className="sample-code-btn" onClick={function() {window.viewer.screenshot.save({axis: true,background: "white",filename: "my_screenshot.png"});}} >Try Me!</a>
+
+<br/>
+
+---
+
+### `settings.get`
+
+**Function**: `viewer.settings.get()`
+
+**Description**: Get the current renderer settings.
+
+**Params**: none
+
+```js title="Sample code for viewer.settings.get"
+function getSettings() {
+	viewer.settings.get();
+}
+```
+
+---
+
+### `settings.set`
+
+**Function**: `viewer.settings.set(settings_object)`
+
+**Description**: Update the renderer settings.
+
+**Params**: Settings object. See sample.
+
+```js title="Sample code for viewer.settings.set"
+function setSettings() {
+	viewer.settings.set({
+		colors: true,
+		opacity: 1,
+		visibility: {
+			logo: true,
+			floor: false,
+			nodes: false,
+			members: true,
+			plates: true,
+			plates_mesh: false,
+			global_origin_axis: false,
+			global_axis: true,
+			local_axis: false,
+		},
+	});
+}
+```
+
+---
+
+## **Viewer Click Events**
+
+The following methods can be found under the `viewer.mouse` property.
+
+---
+
+### `enable`
+
+**Function**: `viewer.mouse.enable()`
+
+**Description**: Enable mouse interaction (on by default).
+
+**Params**: none
+
+```js title="Sample code for viewer.mouse.enable"
+function enableMouse() {
+	viewer.mouse.enable();
+}
+```
+
+---
+
+### `selectObject`
+
+**Function**: `viewer.mouse.selectedObject(object_type, id)`
+
+**Description**: Manually select/highlight an object in the scene.
+
+**Params**: A string which accepts `node`, `member` or `plate` and the element ID as an integer.
+
+```js title="Sample code for viewer.mouse.selectedObject"
+function selectModelElement() {
+	viewer.mouse.selectObject("plate", 3);
+}
+```
+
+---
+
+### `getSelectedObjects`
+
+**Function**: `viewer.mouse.getSelectedObjects(object_type)`
+
+**Description**: Get all selected elements in the scene. Specify type to only select a specific type. Provide no arguments to get all types.
+
+**Params**: A string which accepts `node`, `member` or `plate`.
+
+```js title="Sample code for viewer.mouse.getSelectedObjects"
+function getSelected() {
+	viewer.mouse.getSelectedObjects("member")
+}
+```
+
+---
+
+### `setOnObjectClickFunction`
+
+**Function**: `viewer.mouse.setOnObjectClickFunction(function)`
+
+**Description**: Function to call when clicking/selecting an object.
+
+**Params**: The callback function to execute.
+
+```js title="Sample code for viewer.mouse.setOnObjectClickFunction"
+function setOnClickFunction() {
+	viewer.mouse.setOnObjectClickFunction(function(data) {
+		console.log('You have an clicked Element: ', data);
+		const element_id = data.id;
+		const type = data.type // ("member", "node", "plate")
+	});
+}
+```

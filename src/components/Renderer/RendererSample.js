@@ -23,7 +23,7 @@ class RendererSample extends Component {
 			that.setState({ loaded: true });
 
 			// Create an instance of the viewer
-			const viewer = new SKYCIV.renderer({
+			window.viewer = new SKYCIV.renderer({
 				container_selector: '#renderer-container',
 			});
 
@@ -53,3 +53,5 @@ class RendererSample extends Component {
 }
 
 export default RendererSample;
+
+

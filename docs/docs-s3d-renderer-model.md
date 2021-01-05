@@ -1,138 +1,193 @@
 ---
 id: s3d-renderer-model
 title: SKYCIV.renderer Model
+sidebar_label: SKYCIV.renderer cont.
 ---
 
-<!-- <script>function bringToRenderer() {location.hash = "#renderer-container"}</script> -->
+import RendererSample from '../src/components/Renderer/RendererSample.js'
 
+---
 
-SkyCiv 3D renderer is available to bring your models to 3D life. Use the SkyCiv Renderer to build your model and visualise the model to ensure the structure is built correctly, confirm member orientation and include in your reporting.
+SkyCiv 3D renderer is available to bring 3D models to life. Use the SkyCiv Renderer to build and visualise the model ensuring the structure is built correctly it is built.
 
-This client side renderer can be included in your applications so you can have a full rendering of your model in real-time.
+This client side renderer can be included in your applications enabling full rendering of the model in real-time.
 
-<div id="renderer-container"></div>
+<RendererSample/>
 
-# Model Class
+---
 
-## `viewer.model.set(s3d_model, callback)`
+## `viewer.model`
 
-Sets/updates your S3D model in the viewer.
+The following methods are available through the `viewer.model` property.
 
+---
 
-<br/><br/>
+### `set`
 
-----
-## `viewer.model.buildStructure(run_update)`
+**Function**: `viewer.model.set(s3d_model, callback)`
 
-Builds the object to be read by the renderer. `run_update` is a boolean
+**Description**: Sets/updates your S3D model in the viewer.
 
-
-
-# Results Class
-
-## `viewer.results.set(analysis_results, callback)`
-
-The object `analysis_results` can be generated from our structural analysis via S3D.model.solve. Below is an example of a function to display some results data and modifying the deformation of the structure.
-
-```js
-	function setResults() {
-		viewer.results.set(analysis_results[1][0]); // set first LC only
-		viewer.setMode('results');
-
-		// Turn on deformed shape
-		viewer.results.setDeformationScale(3); // 0-5
-		viewer.results.deformedStructure();
-
-		// Turn on member color results
-		var sett = viewer.results.getSettings();
-		sett.members = false; // member contours
-		sett.plates = false; // plate contours
-		sett.current_result_key = 'displacement';
-		viewer.render();
-	}
-
-```
-
-<br/><br/>
+**Params**: An [s3d_model](docs-s3d-model.md) object and a callback function to run once the model has been set.
 
 ----
-## `viewer.results.set(settings_object)`
-Set the results settings. Format of the result settings is as follows:
-```json
-{
-	"deformation_scale": 0, // 0-5
-	"members": false,
-	"plates": false,
-	"plate_elements": false, // elemental results
-	"current_result_key": "displacement",
+
+### `buildStructure`
+
+Builds the object to be read by the renderer.
+
+**Function**: `viewer.model.buildStructure(run_update)`
+
+**Description**: Builds the object to be read by the renderer.
+
+**Params**: A boolean indicating if `run_update` should be triggered following the build.
+
+---
+
+## `viewer.results`
+
+The following methods are available through the `viewer.results` property.
+
+---
+
+### `set`
+
+**Function**: `viewer.results.set(analysis_results, callback)`
+
+**Description**: Set results to the model.
+
+**Params**: The `analysis_results` object and a callback function to run once the results have been set.
+
+:::note
+
+The object `analysis_results` can be generated from a structural analysis via [`S3D.model.solve`](docs-S3D.model.md#s3dmodelsolve). Below is an example of a function to display some results data and to modify the deformation of the structure.
+
+:::
+
+```js title="Sample code of viewer.results.set"
+function setResults() {
+	viewer.results.set(analysis_results[1][0]); // set first LC only
+	viewer.setMode('results');
+
+	// Turn on deformed shape
+	viewer.results.setDeformationScale(3); // 0-5
+	viewer.results.deformedStructure();
+
+	// Turn on member color results
+	const resultSettings = viewer.results.getSettings();
+	resultSettings.members = false; // member contours
+	resultSettings.plates = false; // plate contours
+	resultSettings.current_result_key = 'displacement';
+	viewer.render();
 }
 ```
 
+----
 
-<!-- <br/><br/> -->
+### `setSettings`
 
-<!-- ---- -->
-<!-- ## `viewer.results.setCurrentResultKey(key)` -->
+**Function**: `viewer.results.setSettings(settings_object)`
 
-<!-- TODO: list keys -->
-<!-- Documentation coming soon. -->
+**Description**: Set the results settings for the viewer.
 
-<br/><br/>
+**Params**: The `settings_object` object.
+
+```js title="Sample code of viewer.results.setSettings"
+function setResultsSettings() {
+	viewer.results.setSettings({
+		"deformation_scale": 0, // 0-5
+		"members": false,
+		"plates": false,
+		"plate_elements": false, // elemental results
+		"current_result_key": "displacement",
+	})
+}
+```
 
 ----
-## `viewer.results.runDeformationAnimation(settings_object)`
 
-Runs an animation of the structure's deformation.
+### `runDeformationAnimation`
 
+**Function**: `viewer.results.runDeformationAnimation(settings_object)`
+
+**Description**: Runs an animation of the structure's deformation.
+
+**Params**: The `settings_object` object.
+
+```js title="Sample code of viewer.results.runDeformationAnimation"
+function runDeformationAnimation() {
+	viewer.results.runDeformationAnimation({
+		"deformation_scale": 0, // 0-5
+		"current_result_key": "displacement",
+	})
+}
+```
+
+---
 
 ## Examples
 
-In these examples S3D.renderer is the new instance of where SKYCIV.renderer().
+<!-- In these examples `S3D.renderer` is the new instance of where `SKYCIV.renderer()`. -->
 
 ### Switch vertical axis on the fly
-```js
-	var s3d_model = S3D.renderer.model.get();
-	s3d_model.settings.vertical_axis = "Z"; // or "Y"
+```js title="Sample code to set the vertical axis"
+// Create an instance of the renderer
+viewer = new SKYCIV.renderer({
+	container_selector: '#renderer-container',
+});
 
-	my_viewer.model.set(s3d_model);
-	my_viewer.model.buildStructure();
-	my_viewer.render();
+const s3d_model = viewer.model.get();
+s3d_model.settings.vertical_axis = "Z"; // or "Y"
+
+viewer.model.set(s3d_model);
+viewer.model.buildStructure();
+viewer.render();
 ```
 
-### Multi-Renderer Views
-```js
+### Multiple Renderer Views
+```js title="Sample code to create multiple views"
+//====================================================
+// Create instance for first view 
+const viewer_1 = new SKYCIV.renderer({
+	container_selector: '#renderer-container-1'
+});
 
-	var viewer_1 = new SKYCIV.renderer({
-		for_use_in_S3D: true, // local dev must use S3D format as we don't have S3D.API script
-		container_selector: '#renderer-container2'
-	});
+// Create an s3d_model for the first viewer
+const s3d_model_1 = {...}
 
-	viewer_1.model.set(s3d_data.model[1]);
+// Set the model data to the view, build and render it
+viewer_1.model.set(s3d_model_1);
+viewer_1.model.buildStructure();
+viewer_1.render();
+//====================================================
+// Create instance for second view 
+const viewer_2 = new SKYCIV.renderer({
+	container_selector: '#renderer-container-2'
+});
 
-	viewer_1.model.buildStructure();
-	viewer_1.render();
+// Create an s3d_model for the second viewer
+const s3d_model_2 = {...}
 
-	var viewer_2 = new SKYCIV.renderer({
-		for_use_in_S3D: true, // local dev must use S3D format as we don't have S3D.API script
-		container_selector: '#renderer-container2'
-	});
+// Set the model data to the view, build and render it
+viewer_2.model.set(s3d_model_2);
+viewer_2.model.buildStructure();
+viewer_2.render();
+//====================================================
 
-	viewer_2.model.set(s3d_data.model[2]);
-
-	viewer_2.model.buildStructure();
-	viewer_2.render();
-
-	viewer_1.resize();
-	viewer_2.resize();
+// Resize views
+viewer_1.resize();
+viewer_2.resize();
 ```
 
 ### Change opacity and colors
-```js
-	var sett = S3D.renderer.settings.get();
-	sett.opacity = 0.5;
-	sett.colors = false;
-	S3D.renderer.render();
+```js title="Sample code to set colors of the renderer"
+// Create an instance of the renderer
+viewer = new SKYCIV.renderer({
+	container_selector: '#renderer-container',
+});
+
+const settingsObject = viewer.settings.get();
+settingsObject.opacity = 0.5;
+settingsObject.colors = false;
+viewer.render();
 ```
-
-
-

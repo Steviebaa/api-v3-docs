@@ -70,9 +70,11 @@ SkyCiv <a href="https://platform.skyciv.com/section-builder"> Section Builder</a
 |  `run_solve` | `boolean` | `true`, `false` | If solve should be executed following the build. |
 |  `material_id` | `integer` | A material id | Material id of shape. Use Structural 3D default materials as a guide. |
 
-<div class="banner tip">
-	To add multiple shapes or to use <a href="#s3dsbrungsd"><code>S3D.SB.runGSD</code></a>, set  <code>"run_solve": false</code>.
-</div>
+:::tip
+
+To add multiple shapes or to use <a href="#s3dsbrungsd"><code>S3D.SB.runGSD</code></a>, set  <code>"run_solve": false</code>.
+
+:::
 
 #### Sample input for the `S3D.SB.buildCustomShape` function
 
@@ -178,9 +180,12 @@ SkyCiv <a href="https://platform.skyciv.com/section-builder"> Section Builder</a
 
 Submit section and calculate section properties. This may already be included in some functions such as [`S3D.SB.buildCustomShape`](#s3dsbbuildcustomshape) where the `run_solve` property has been set to `true`.
 
-<div class="banner info">
-	Section should already be set via one of the earlier functions.
-</div>
+
+:::info
+
+Section should already be set via one of the earlier functions.
+
+:::
 
 ```json
 {

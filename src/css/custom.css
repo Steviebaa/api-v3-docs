@@ -40,7 +40,6 @@
 
 /* OVERWRITE CONTAINER */
 .container {
-	/* margin: 0px; */
 	max-width: 80vw;
 }
 
@@ -104,4 +103,26 @@
 .sample-code-btn:after {
 	content: '→';
 	padding-left: 10px;
+}
+
+img {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* FIX ADMONITIONS UNTIL DOCUSAURUS COMMIT STYLING CHANGES */
+div.admonition-content a code {
+	background-color: var(--ifm-code-background);
+	color: var(--ifm-color-primary-light);
+	text-decoration: underline;
+}
+
+a.sample-code-btn code {
+	background-color: var(--ifm-code-background);
+	color: var(--ifm-color-primary-light);
+	text-decoration: underline;
+}
+
+.alert--secondary {
+	background-color: #fafafa;
 }

@@ -520,31 +520,93 @@ The following JSON Snippet shows both methods of specifying the section data:
 ### `materials`
 Individual materials are stored in the materials object. Each material is defined by an object. The object key is the ID of the material, and should be a unique positive integer.
 
-| Key  | Type    |  Description     |
-| :--- | :---    |  :---            |
-| `name` | `string` | The name of the material |
-| `density` | `float` | The density of the material. |
-| `elasticity_modulus` | `float` | The Modulus of Elasticity (or Young's Modulus) of the material. |
-| `poissons_ratio` | `float` | The Poisson's Ratio for the material. |
+| Key  | Type    |  Accepts     |  Description     |
+| :--- | :---    |  :---        |  :---
+| `id` | `integer` | An integer greater than or equal to `1`. All material IDs should be unique. | The ID of the material |
+| `name` | `string` | Any string | The name of the material |
+| `density` | `float` | A normal number | The density of the material. |
+| `elasticity_modulus` | `float` |  A normal number | The Modulus of Elasticity (or Young's Modulus) of the material. |
+| `poissons_ratio`    | `float` |  A normal number | The Poisson's Ratio for the material. |
+| `yield_strength`    | `float` |  A normal number | The Yield strength of the material. |
+| `ultimate_strength` | `float` |  A normal number | The Ultimate strength the material. |
+| `class` | `string` | `steel`, `aluminium`, `masonry`, `concrete`, `wood`, `other` | The type of material. |
 
 #### Sample code for the `materials` object
-The following JSON snippet adds two materials, Steel & Aluminium, to the model.
+The following JSON snippet adds several materials, to the model using the metric system.
 
 ```json title="materials-sample.json"
 {
     "materials": {
         "1": {
-            "name": "Structural Steel",
-            "density": 7850,
-            "elasticity_modulus": 200000,
-            "poissons_ratio": 0.27
-        },
-        "2": {
-            "name": "Aluminium",
-            "density": 2700,
-            "elasticity_modulus": 69000,
-            "poissons_ratio": 0.32
-        }
+			"id": 1,
+			"name": "Structural Steel",
+			"density": 7850,
+			"elasticity_modulus": 200000,
+			"poissons_ratio": 0.27,
+			"yield_strength": 260,
+			"ultimate_strength": 410,
+			"class": "steel"
+		},
+		"2": {
+			"id": 2,
+			"name": "Aluminium",
+			"density": 2700,
+			"elasticity_modulus": 69000,
+			"poissons_ratio": 0.32,
+			"yield_strength": 100,
+			"ultimate_strength": 150,
+			"class": "aluminium"
+		},
+		"3": {
+			"id": 3,
+			"name": "Carbon Fibre Reinforced Plastic",
+			"density": 3500,
+			"elasticity_modulus": 150000,
+			"poissons_ratio": 0.2,
+			"yield_strength": null,
+			"ultimate_strength": 2705,
+			"class": "other"
+		},
+		"4": {
+			"id": 4,
+			"name": "Concrete",
+			"density": 2500,
+			"elasticity_modulus": 17000,
+			"poissons_ratio": 0.2,
+			"yield_strength": null,
+			"ultimate_strength": 3.5,
+			"class": "concrete"
+		},
+		"5": {
+			"id": 5,
+			"name": "Concrete High Strength",
+			"density": 2500,
+			"elasticity_modulus": 30000,
+			"poissons_ratio": 0.2,
+			"yield_strength": null,
+			"ultimate_strength": 5,
+			"class": "concrete"
+		},
+		"6": {
+			"id": 6,
+			"name": "Oakwood",
+			"density": 900,
+			"elasticity_modulus": 11000,
+			"poissons_ratio": 0.3,
+			"yield_strength": 4.5,
+			"ultimate_strength": 5,
+			"class": "wood"
+		},
+		"7": {
+			"id": 7,
+			"name": "Glass",
+			"density": 2500,
+			"elasticity_modulus": 70000,
+			"poissons_ratio": 0.24,
+			"yield_strength": null,
+			"ultimate_strength": 33,
+			"class": "other"
+		}
     }
 }
 ```
