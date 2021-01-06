@@ -194,7 +194,7 @@ The following is a list of available functions:
 * [`S3D.SB.buildCustomShape`](docs-S3D.SB.md#s3dsbbuildcustomshape)
 * [`S3D.SB.solve`](docs-S3D.SB.md#s3dsbsolve)
 * [`S3D.SB.runGSD`](docs-S3D.SB.md#s3dsbrungsd)
-* [`S3D.SB.detectLibraryShape`](docs-S3D.SB.md#s3dsbdetectlibraryshape)
+<!-- * [`S3D.SB.detectLibraryShape`](docs-S3D.SB.md#s3dsbdetectlibraryshape) -->
 
 
 ### File management
