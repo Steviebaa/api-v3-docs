@@ -242,7 +242,9 @@ Fetches results data for a particular member.
 
 If `"type": "image"` is provided, then an image will be returned in base64 format.
 
-<img src="/api-v3-docs/img/images/api-generated-diagram.png" style={{ justifyContent: 'center', maxWidth: '700px'}}/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+  <img src="/api/v3/img/images/api-generated-diagram.png" style={{ backgroundColor: 'white', justifyContent: 'center', maxWidth: '700px'}}/>
+</div>
 
 <br/>
 

@@ -1,8 +1,8 @@
 module.exports = {
-	title: 'SkyCiv API V3',
-	tagline: 'Structural Analysis & Design',
+	title: 'SkyCiv Structural Analysis and Design API Documentation (v3.0)',
+	tagline: 'The world\'s leading Structural Analysis and Design API',
 	url: 'https://skyciv.com',
-	baseUrl: '/api-v3-docs/',
+	baseUrl: '/api/v3/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
@@ -10,10 +10,12 @@ module.exports = {
 	projectName: 'api-v3-docs', // Usually your repo name.
 	themeConfig: {
 		navbar: {
+			// style: 'primary',
 			title: 'SkyCiv API',
 			logo: {
 				alt: 'SkyCiv Logo',
-				src: 'img/logo.ico',
+				src: 'img/logo-black-blue.png',
+				srcDark: 'img/logo-white-blue.png',
 			},
 			items: [
 				{
@@ -25,8 +27,8 @@ module.exports = {
 				{ to: 'blog', label: 'Blog', position: 'left' },
 				{
 					href: 'https://github.com/skyciv',
-					label: 'GitHub',
 					position: 'right',
+					className: 'header-github-link',
 				},
 			],
 		},
@@ -95,14 +97,12 @@ module.exports = {
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
 					// Please change this to your repo.
-					editUrl:
-						'https://github.com/facebook/docusaurus/edit/master/website/',
+					// editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
 				},
 				blog: {
 					showReadingTime: true,
 					// Please change this to your repo.
-					editUrl:
-						'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+					// editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/blog/',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),

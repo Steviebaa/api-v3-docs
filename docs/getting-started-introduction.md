@@ -28,7 +28,9 @@ The SkyCiv API has a variety of applications, including automatic structural ana
 
 <br/>
 
-<img src="/api-v3-docs/img/images/skyciv-api-sample-workflow.png" style={{width: "85%"}}/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+    <img src="/api/v3/img/images/skyciv-api-sample-workflow.png" style={{width: "85%"}}/>
+</div>
 
 To use the SkyCiv API, you will need a SkyCiv Account. It is Free to [register for a SkyCiv Account](https://skyciv.com/free-signup), and you can make up to 100 calls per month for free! 
 

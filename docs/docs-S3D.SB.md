@@ -269,7 +269,9 @@ After a section is set via [`S3D.SB.buildCustomShape`](#s3dsbbuildcustomshape), 
 
 The following image is an example of a complex section that may be analyzed using GSD.
 
-<img src="https://skyciv.com/wp-content/uploads/2019/03/general-concrete-section-design-software.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+  <img src="https://skyciv.com/wp-content/uploads/2019/03/general-concrete-section-design-software.png"/>
+</div>
 
 
 

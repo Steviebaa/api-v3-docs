@@ -78,8 +78,9 @@ You will need to install Node.js to your machine. Download the right version for
 
 Once you have installed Node.js, open the command terminal and type in `node -v`. The terminal should print a version number confirming that it has been installed. Likewise, you should now have access to the `npm` command, so type in `npm -v` and the terminal will print the NPM version number.
 
-<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/npm-version-check.png"/>
-
+<div style={{ width: '100%', textAlign: 'center' }}>
+	<img style={{maxWidth: '600px'}} src="/api/v3/img/images/npm-version-check.png"/>
+</div>
 
 #### Creating a project
 
@@ -89,11 +90,15 @@ We can now create a project and add the `skyciv` dependency to it, so lets do th
 2. Open this folder in your preferred code editor. [VS Code](https://code.visualstudio.com/download) is great (and free) for this purpose.
 3. In the VS Code menu, click `Terminal > New Terminal` and your will now have a command line available at the bottom of the window.
 
-<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/vscode-open-terminal.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+	<img src="/api/v3/img/images/vscode-open-terminal.png"/>
+</div>
 
 4. In the terminal, you should see the path that points to your `sample-project` directory. Enter the command `npm init -y`. The option `-y` means "answer yes to all the following questions". This will create the npm file named package.json which will contain those answers. By default the entry point to your app will now be the file named index.js which is common convention. You can see this under the "main" key in the package.json file.
 
-<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/npm-init-demo.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+	<img src="/api/v3/img/images/npm-init-demo.png"/>
+</div>
 
 *Quick note*: The package.json file means you can send the project to other people without the node_modules folder and they will know what dependencies the project relies on. These can automatically be installed by using the command `npm i` (or `npm install`) from within the project directory. The node_modules folder can get ***very*** big so its nice to not include it therefore only making copies of the dependencies where they're required.
 
@@ -198,7 +203,9 @@ Windows: `pip --version`
 
 MacOS: `pip -V`
 
-<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/python-version-check.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+	<img style={{ maxWidth: '800px' }} src="/api/v3/img/images/python-version-check.png"/>
+</div>
 
 If the terminal doesn't print a version number then you will need to install it. The Python Packaging Authority provides a [walk-through here](https://pip.pypa.io/en/stable/installing/).
 
@@ -210,11 +217,15 @@ We can now create a project and add the `skyciv` dependency to it, so lets do th
 2. Open this folder in your preferred code editor. [VS Code](https://code.visualstudio.com/download) is great (and free) for this purpose.
 3. In the VS Code menu click `Terminal > New Terminal` and your will now have a command line available at the bottom of the window.
 
-<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/vscode-open-terminal.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+	<img src="/api/v3/img/images/vscode-open-terminal.png"/>
+</div>
 
 4. In the terminal you should see the path that points to your `sample-project` directory. Enter the command `pip install skyciv`.
 
-<img class="inline-img" style={{maxWidth: '100%'}} src="/api-v3-docs/img/images/vscode-pip-install-skyciv.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+	<img src="/api/v3/img/images/vscode-pip-install-skyciv.png"/>
+</div>
 
 The important part of the output is `Successfully installed skyciv-x.x.x`. This means the skyciv package has been added to your Python directory and is available to use in any Python project.
 
@@ -281,7 +292,7 @@ How you install the SkyCiv NuGet package depends on whether you are developing w
 
 If you are developing in Visual Studio, the easiest way to install the SkyCiv NuGet package is through the NuGet Package Manager in Visual Studio:
 
-<img src="/api-v3-docs/img/images/nuget_visual_studio.gif"/>
+<img src="/api/v3/img/images/nuget_visual_studio.gif"/>
 
 Alternatively you can install the SkyCiv.API NuGet package from Package Manager Console:
 
@@ -306,13 +317,13 @@ If you are working with Visual Studio Code, there are a few Extensions that make
 
 The first is the Nuget Gallery Extension:
 
-<img src="/api-v3-docs/img/images/nuget_vs_code.gif"/>
+<img src="/api/v3/img/images/nuget_vs_code.gif"/>
 
 #### Installing in Visual Studio Code using the Nuget Package Manager Extension
 
 Alternatively, you can use the Nuget Package Manager Extension:
 
-<img src="/api-v3-docs/img/images/nuget_vs_code2.gif"/>
+<img src="/api/v3/img/images/nuget_vs_code2.gif"/>
 
 ### Using the Package
 

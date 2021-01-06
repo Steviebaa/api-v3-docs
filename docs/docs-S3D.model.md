@@ -253,7 +253,9 @@ The response will return an object of screenshots in base64 format.
 
 The following is an example of the isometric screenshot from the above sample:
 
-<img src="/api-v3-docs/img/images/S3D-model-takeScreenshot.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+  <img src="/api/v3/img/images/S3D-model-takeScreenshot.png"/>
+</div>
 
 <br/>
 

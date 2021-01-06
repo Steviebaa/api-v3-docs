@@ -212,4 +212,6 @@ The response will provide all member capacities, ratios and design reports. The 
 
 SkyCiv supports custom sections and reinforcement checks via SkyCiv's General Section Designer. Use [S3D.SB.runGSD](docs-S3D.SB.md#s3dsbrungsd) to run custom as seen in the image below.
 
-<img src="https://skyciv.com/wp-content/uploads/2019/03/general-concrete-section-design-software.png"/>
+<div style={{ width: '100%', textAlign: 'center' }}>
+  <img src="https://skyciv.com/wp-content/uploads/2019/03/general-concrete-section-design-software.png"/>
+</div>
