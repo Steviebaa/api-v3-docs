@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[15],{88:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Alpha Release - SkyCiv API v3.0","permalink":"/api/v3/blog/alpha-release"}]}')}}]);

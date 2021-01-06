@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[Alpha Release - SkyCiv API v3.0]]></title>
-            <link>https://skyciv.com/api/v3/blog/alpha-release</link>
+            <link>https://skyciv.com/api-v3-docs/blog/alpha-release</link>
             <guid>alpha-release</guid>
             <pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Software for the future.]]></description>

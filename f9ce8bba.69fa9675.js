@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[40],{112:function(a){a.exports=JSON.parse('{"allTagsPath":"/api/v3/blog/tags","slug":"skyciv","name":"skyciv","count":1,"permalink":"/api/v3/blog/tags/skyciv"}')}}]);
